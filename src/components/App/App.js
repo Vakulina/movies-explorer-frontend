@@ -11,25 +11,13 @@ function App() {
   return (
     <div className="page">
       <Routes>
-        <Route exact path="/">
-          <Main />
-        </Route>
-        <Route path="/movies">
-          <Movies />
-        </Route>
-        <Route path="/saved-movies">
-          <SavedMovies />
-        </Route>
-        <Route path="/signup">
-          <Register />
-        </Route>
-        <Route path="/signin">
-          <Login />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-      </Routes>
+        <Route path="/" element={ <Main /> } />
+        <Route path="/movies" element={ <Movies /> } />
+        <Route path="/saved-movies" element={ <SavedMovies /> } />
+        <Route path="/signup" element={ <Register /> } />
+        <Route path="/signin" element={ <Login /> } />
+        <Route path="/profile" element={ <Profile /> } />
+        </Routes>
     </div>
   );
 }
