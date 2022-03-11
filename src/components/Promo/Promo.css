@@ -34,7 +34,7 @@
     height: 230px;
   }
 }
-@media (max-width: 400px){
+@media (max-width: 600px){
   .promo {
     padding: 183px 0 40px 0;
   }
