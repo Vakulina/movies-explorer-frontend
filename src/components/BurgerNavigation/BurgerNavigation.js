@@ -31,13 +31,19 @@ export default function BurgerNavigation() {
               </button>
               <nav className='burger__nav'>
                 <Link className="burger__link" to="/" onClick={closeMenu}>
+                  <span className='burger__item'>
                   Главная
+                  </span>
                 </Link>
                 <Link className="burger__link" to="/movies">
+                <span className='burger__item'>
                   Фильмы
+                  </span>
                 </Link>
                 <Link className="burger__link" to="/saved-movies">
+                <span className='burger__item'>
                   Сохраненные фильмы
+                  </span>
                 </Link>
               </nav>
             </div>

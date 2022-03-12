@@ -63,12 +63,22 @@
   line-height: 22px;
   text-align: center;
   height: 50px;
+
 }
-.burger__link::after{
-  content:'';
-  width: 100%;
+.burger__item {
+  position: relative;
+}
+
+.burger__link:hover .burger__item:after, 
+.burger__link:focus .burger__item:after,
+.burger__link:active .burger__item:after {
+  content: ' ';
+  position: absolute;
+  top:25px; 
+  left: 0;
   height: 2px;
-  margin-top: 4px;
+  width:  100%;
+  background-color: #000000;
 }
 .burger__link_account {
   margin-bottom: 70px;
