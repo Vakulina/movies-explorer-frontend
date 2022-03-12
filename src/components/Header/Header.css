@@ -105,4 +105,13 @@ padding-left: 44px;
   .header__container{
     padding: 0 14px ;
   }
+  .header{
+    font-size: 10px;
+  }
+  .header__link_entrance{
+    padding: 6px 11px;
+  }
+  .header__link{
+    margin-left: 15px;
+  }
 }

@@ -55,3 +55,11 @@
     margin: 0 10px 60px 10px;
   }
 }
+@media (max-width: 400px){
+  .promo {
+    padding: 183px 0 0px 0;
+  }
+  .promo_container {
+    min-height: 447px;
+ }
+}
