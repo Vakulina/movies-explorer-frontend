@@ -53,6 +53,9 @@
   background-color: #2BE080;
   border-radius: 3px;
 }
+.header__navigation {
+  display: flex;
+}
 .header__navigation_logged {
 display: flex;
 justify-content: start;
@@ -93,9 +96,9 @@ padding-left: 44px;
   filter: grayscale(60%);
 }
 
-@media (max-width: 600px){
-  .header{
-    padding: 0 30px ;
+@media (max-width: 800px){
+  .header__container {
+    padding: 0 19px 0 30px ;
   }
 }
 @media (max-width: 400px){
