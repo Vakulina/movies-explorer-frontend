@@ -1,10 +1,12 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo__header.svg'
+import logo from '../../images/logo__header.svg';
+import account_img from '../../images/account.svg'
 
 export default function Header({ isLogin }) {
   return (
-    <header className='header'>
+    <header className={`header ${isLogin&&'header_logged'}`}>
+      <div className="header__container">
       <Link className="header__link header__link_logo" to='/'>
         <img src={logo} className="header__logo" alt="логотип" />
       </Link>
@@ -16,17 +18,19 @@ export default function Header({ isLogin }) {
           Войти
         </Link>
       </nav>}
-      {isLogin && <nav className='header__navigation'>
-        <Link className="header__link header__link_registration" to="/signup">
+      {isLogin && <nav className='header__navigation header__navigation_logged'>
+        <Link className="header__link header__link_logged header__link_films" to="/movies">
           Фильмы
         </Link>
-        <Link className="header__link header__link_entrance" to="/signin">
+        <Link className="header__link header__link_logged header__link_saved-films" to="/saved-movies">
           Сохраненные фильмы
         </Link>
-        <Link className="header__link header__link_entrance" to="/signin">
+        <Link className="header__link header__link_logged header__account" to="/profile">
           Аккаунт
+          <img className="header__account-img" src={account_img} alt='иконка аккаунта'/>
         </Link>
       </nav>}
+      </div>
     </header>
   );
 }

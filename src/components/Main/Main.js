@@ -4,9 +4,9 @@ import Header from '../Header/Header';
 
 export default function Main() {
   return (
-<>
-<Header isLogin={false}/>
+<main>
+<Header isLogin={true}/>
 <Promo/>
-</>
+</main>
   );
 }
