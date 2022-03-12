@@ -57,6 +57,7 @@
   font-size: 14px;
   line-height: 20px;
 }
+
 .about-project__timeline {
   width: 100%;
   display: grid;
@@ -68,7 +69,7 @@
   "backend frontend";
   align-items: center
 }
-.about-project__backend_subtitle{
+.about-project__subtitle_backend{
   grid-area: backend-line;
   background-color: #2BE080;
   font-size: 14px;
@@ -76,16 +77,15 @@
   line-height: 36px;
   margin: 0;
 }
-.about-project__backend_text {
+
+.about-project__text_backend{
   grid-area: backend;
-  font-size: 14px;
   font-weight: 500;
   line-height: 36px;
   color: #A0A0A0;
-  margin: 0;
   margin-top: 5px;
 }
-.about-project__frontend_subtitle{
+.about-project__subtitle_frontend{
   grid-area: frontend-line;
   background-color: #F2F2F2;
   font-size: 14px;
@@ -93,13 +93,11 @@
   line-height: 36px;
   margin: 0;
 }
-.about-project__frontend_text {
+.about-project__text_frontend {
   grid-area: frontend;
-  font-size: 14px;
   font-weight: 500;
   line-height: 36px;
   color: #A0A0A0;
-  margin: 0;
   margin-top: 5px;
 }
 @media (max-width: 800px){
@@ -119,3 +117,60 @@ margin-bottom: 22px;
     margin-top: 23px;
   }
 }
+@media (max-width: 400px){
+  .about-project{
+    height: 641px;
+    padding: 70px 18px;
+    column-gap: 32px;
+    row-gap: 56px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 55px repeat(3, 1fr);
+    grid-template-areas:
+    "title"
+    "stages"
+    "weeks"
+    "timeline";
+  }
+  .about-project__title {
+    font-size: 18px;
+    line-height: 22px;
+   } 
+   .about-project__title::after{
+     bottom: 4px;
+   }
+   .about-project__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 16px;
+   } 
+
+   .about-project__text {
+    margin: 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-project__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 16px;
+   } 
+
+   .about-project__timeline {
+    margin-top: 11px;
+    grid-template-columns:  4fr 8fr;
+    grid-template-rows: 35px 19px;
+    justify-self: stretch;
+  }
+   .about-project__subtitle_frontend {
+    font-size: 11px;
+    line-height: 35px;
+   }
+   .about-project__subtitle_backend {
+    font-size: 11px;
+    line-height: 35px;
+  }
+
+}
+
+
+
