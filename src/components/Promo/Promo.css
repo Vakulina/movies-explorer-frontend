@@ -26,12 +26,17 @@
 }
 
 @media (max-width: 800px){
+  .promo_container {
+     padding: 0;
+     text-align: center;
+     min-height: 475px;
+  }
   .promo {
     padding: 300px 44px 70px 44px;
   }
   .promo__heading {
-    text-align: center;
-    margin: 0 10px 140px 10px;
+  max-width: 100%;
+  margin-bottom: 140px;
   }
   .promo__logo {
     object-fit: cover;

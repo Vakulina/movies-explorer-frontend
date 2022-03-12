@@ -83,7 +83,7 @@
   line-height: 36px;
   color: #A0A0A0;
   margin: 0;
-  margin-top: 2px;
+  margin-top: 5px;
 }
 .about-project__frontend_subtitle{
   grid-area: frontend-line;
@@ -100,5 +100,22 @@
   line-height: 36px;
   color: #A0A0A0;
   margin: 0;
-  margin-top: 2px;
+  margin-top: 5px;
+}
+@media (max-width: 800px){
+  .about-project{
+    padding: 90px 50px;
+    column-gap: 32px;
+  }
+  .about-project__text{
+    font-size: 12px;
+    line-height: 18px;
+  
+  }
+  .about-project__subtitle {
+margin-bottom: 22px;
+  }
+  .about-project__timeline {
+    margin-top: 23px;
+  }
 }
