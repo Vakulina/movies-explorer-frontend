@@ -40,6 +40,7 @@
   grid-area: weeks;
 }
 .about-project__timeline{
+  margin-top: 40px;
   grid-area: timeline;
 }
 .about-project__subtitle {
@@ -56,4 +57,48 @@
   font-size: 14px;
   line-height: 20px;
 }
-
+.about-project__timeline {
+  width: 100%;
+  display: grid;
+  text-align: center;
+  grid-template-columns:  1fr 4fr;
+  grid-template-rows: 36px 36px;
+  grid-template-areas: 
+  "backend-line frontend-line "
+  "backend frontend";
+  align-items: center
+}
+.about-project__backend_subtitle{
+  grid-area: backend-line;
+  background-color: #2BE080;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 36px;
+  margin: 0;
+}
+.about-project__backend_text {
+  grid-area: backend;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  color: #A0A0A0;
+  margin: 0;
+  margin-top: 2px;
+}
+.about-project__frontend_subtitle{
+  grid-area: frontend-line;
+  background-color: #F2F2F2;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 36px;
+  margin: 0;
+}
+.about-project__frontend_text {
+  grid-area: frontend;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  color: #A0A0A0;
+  margin: 0;
+  margin-top: 2px;
+}

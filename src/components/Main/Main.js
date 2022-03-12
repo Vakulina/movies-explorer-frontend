@@ -6,7 +6,7 @@ import AboutProject from '../AboutProject/AboutProject';
 export default function Main() {
   return (
 <main>
-<Header isLogin={true}/>
+<Header isLogin={false}/>
 <Promo/>
 <AboutProject/>
 </main>
