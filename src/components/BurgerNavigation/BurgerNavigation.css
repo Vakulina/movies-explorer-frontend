@@ -63,7 +63,6 @@
   line-height: 22px;
   text-align: center;
   height: 50px;
-
 }
 .burger__item {
   position: relative;
@@ -89,4 +88,18 @@
 .burger__account-img {
   margin-left: 22px;
   font-family: Inter;
+}
+@media (max-width: 400px){
+  .burger__btn {
+    margin-right: 0;
+  }
+  .burger__link {
+    height: 45px;
+  }
+  .burger__nav {
+    padding-top: 95px;
+  }
+  .burger__link_account {
+    margin-bottom: 48px;
+  }
 }
