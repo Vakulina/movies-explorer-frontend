@@ -100,21 +100,27 @@
   color: #A0A0A0;
   margin-top: 5px;
 }
-@media (max-width: 800px){
+@media (max-width: 800px) {
+  .about-project__subtitle {
+    margin-bottom: 22px;
+  }
+  .about-project__timeline {
+    margin-top: 23px;
+  }
   .about-project{
     padding: 90px 50px;
     column-gap: 32px;
+    height: 588px;
   }
   .about-project__text{
     font-size: 12px;
     line-height: 18px;
-  
   }
-  .about-project__subtitle {
-margin-bottom: 22px;
+  .about-project__subtitle_backend {
+    margin-top: 22px;
   }
-  .about-project__timeline {
-    margin-top: 23px;
+  .about-project__subtitle_frontend {
+    margin-top: 22px;
   }
 }
 @media (max-width: 400px){
