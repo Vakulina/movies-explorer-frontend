@@ -144,11 +144,6 @@
    .about-project__title::after{
      bottom: 4px;
    }
-   .about-project__subtitle {
-    font-size: 18px;
-    line-height: 22px;
-    margin-bottom: 16px;
-   } 
 
    .about-project__text {
     margin: 0;
@@ -170,10 +165,12 @@
    .about-project__subtitle_frontend {
     font-size: 11px;
     line-height: 35px;
+    margin-top: 0;
    }
    .about-project__subtitle_backend {
     font-size: 11px;
     line-height: 35px;
+    margin-top: 0;
   }
 
 }

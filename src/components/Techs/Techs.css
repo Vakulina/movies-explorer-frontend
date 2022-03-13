@@ -88,3 +88,37 @@ font-size: 22px;
       line-height: 15px;
             }
 }
+@media (max-width: 400px) {
+  .techs{
+    background-color: #ffffff;
+  }
+  .techs__title {
+    margin-bottom: 26px;
+    font-size: 18px;
+  }
+  .techs__container{
+    padding: 70px 18px;
+    min-height: 651px;
+  }
+  .techs__line {
+   margin-bottom: 60px;
+  }
+  .techs__subtitle {
+    margin-bottom: 24px;
+    line-height: 36px;
+    font-size: 30px;
+    }
+    .techs__description{
+      font-size: 11px;
+      line-height: 16px;
+      margin: 0 auto 50px auto;
+      }
+
+
+      .techs__item {
+        width: 84px;
+        height: 57px;
+           font-size: 12px;
+      line-height: 15px;
+            }
+}
