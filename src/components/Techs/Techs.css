@@ -112,8 +112,14 @@ font-size: 22px;
       font-size: 11px;
       line-height: 16px;
       margin: 0 auto 50px auto;
+      
       }
-
+.techs__list {
+  flex-wrap: wrap;
+  max-width: 178px;
+  margin: 0 auto;
+  justify-content: start;
+}
 
       .techs__item {
         width: 84px;
