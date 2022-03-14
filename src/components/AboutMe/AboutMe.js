@@ -19,7 +19,7 @@ export default function AboutMe() {
             <a className='about-me__link' href="https://facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
           </li>
           <li className='about-me__link-item'>
-            <a className='about-me__link' href="https://github.com/" target="_blank" rel="noreferrer">Github</a>
+            <a className='about-me__link' href="https://github.com/Vakulina" target="_blank" rel="noreferrer">Github</a>
           </li>
         </ul>
       </div>

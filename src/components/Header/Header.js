@@ -7,7 +7,6 @@ import BurgerNavigation from '../BurgerNavigation/BurgerNavigation';
 
 export default function Header({ isLogin }) {
   const [windowWidth, setWindowWidth] = useState(document.documentElement.scrollWidth);
-  console.log(windowWidth)
   return (
     <header className={`header ${isLogin&&'header_logged'}`}>
       <div className="header__container">
