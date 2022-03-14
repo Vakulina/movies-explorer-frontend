@@ -32,3 +32,9 @@ margin-bottom: 50px;
 .portfolio__item:hover, .portfolio__item:active {
 	box-shadow: 0 0 15px rgba(122,122,122,0.3);
 }
+@media (max-width: 800px){
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}

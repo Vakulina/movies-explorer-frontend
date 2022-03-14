@@ -15,6 +15,7 @@
   margin: 0;
   margin-bottom: 23px;
 }
+
 .about-me__line {
   width: 100%;
   max-width: 1140px;
@@ -45,6 +46,7 @@ line-height: 20px;
 margin: 0;
 margin-bottom: 26px;
 }
+
 .about-me__paragraf {
 font-size: 14px;
 font-weight: 400;
@@ -79,4 +81,33 @@ margin-bottom: 99px;
 .about-me__foto {
   width: 270px;
   height: 327px;
+}
+@media (max-width: 800px){
+     .about-me {
+    padding: 92px 50px;
+  }
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+  .about-me__caption{
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+  .about-me__paragraf {
+    max-width: 364px;
+    font-family: Inter;
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 87px;
+  }
+  .about-me__foto {
+    height: 307px;
+    width: 255px;
+  }
+  .about-me__two-columns {
+    margin-bottom: 90px;
+  }
 }
