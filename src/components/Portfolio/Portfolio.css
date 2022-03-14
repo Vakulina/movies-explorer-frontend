@@ -38,3 +38,19 @@ margin-bottom: 50px;
     line-height: 50px;
   }
 }
+@media (max-width: 400px) {
+  .portfolio__title {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 40px;
+  }
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .portfolio__item {
+    height: 47px;
+    background-position: right 25%;
+    background-size: 12px 12px;
+  }
+}
