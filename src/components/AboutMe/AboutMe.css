@@ -85,7 +85,8 @@
 }
 @media (max-width: 800px){
   .about-me {
-    padding: 92px 50px;
+    padding: 87px 50px 10px 50px;
+    height: 994px;
   }
   .about-me__name {
     font-size: 40px;
