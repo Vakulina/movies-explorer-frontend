@@ -1,5 +1,4 @@
 import './Techs.css';
-import Portfolio from '../Portfolio/Portfolio'
 
 export default function Techs() {
   return (
@@ -21,7 +20,6 @@ export default function Techs() {
         <li className="techs__item">mongoDB</li>
       </ul>
   </div>
-  <Portfolio />
 </section>
   );
 }
