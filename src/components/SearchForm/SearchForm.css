@@ -88,3 +88,35 @@
   outline: 3px solid rgb(255, 153, 0);
   border-radius: 3px;
 }
+@media (max-width: 800px){
+  .search-form { 
+    padding: 80px 30px 61px 30px ;
+  }
+}
+@media (max-width: 400px) {
+  .search-form { 
+    padding: 78px 14px 50px 14px ;
+  }
+  .search-form__label {
+    display: none;
+  }
+  .search-form__input {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    line-height: 22px; 
+  }
+  .search-form__input::placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px; 
+    text-align: left;
+  }
+  .search-form__input-container {
+    margin-bottom: 44px;
+  }
+  .search-form__button {
+    top: 14px;
+  }
+}

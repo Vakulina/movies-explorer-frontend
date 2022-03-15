@@ -62,3 +62,8 @@
   outline: 3px solid rgb(255, 153, 0);
   border-radius: 3px;
 }
+@media (max-width: 400px){
+  .filter-checkbox__label{
+    font-size: 11px;
+  }
+}
