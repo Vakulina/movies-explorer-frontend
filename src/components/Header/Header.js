@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import './Header.css';
 import { Link } from 'react-router-dom';
+import './Header.css';
 import logo from '../../images/logo__header.svg';
 import account_img from '../../images/account.svg';
 import BurgerNavigation from '../BurgerNavigation/BurgerNavigation';
