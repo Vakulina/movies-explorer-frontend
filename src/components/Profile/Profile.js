@@ -29,7 +29,6 @@ export default function Profile() {
               </form>   
           </section>
         </>
-    
       );
     }
     
