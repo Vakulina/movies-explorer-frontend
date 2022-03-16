@@ -26,3 +26,9 @@
     padding: 40px 10px 10px 10px;
   }
 }
+
+@media screen and (max-width: 550px) {
+  .listMovies {
+    padding: 40px 10px 30px 10px;
+  }
+}

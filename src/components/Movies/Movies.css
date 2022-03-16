@@ -1,0 +1,30 @@
+.movie {
+  width: 100%;
+}
+.movie__more-btn {
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+  max-width: 320px;
+  margin: 50px auto 80px auto;
+  cursor: pointer;
+  height: 36px;
+  background-color: #F9F9F9;
+  transition: 0.5s;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+}
+.movie__more-btn:hover, .movie__more-btn:active {
+  background-color: #dddcdc;
+}
+.movie__more-btn:focus {
+  outline: 3px solid rgb(255, 153, 0);
+  border-radius: 5px;
+}
+@media screen and (max-width: 400px) {
+  .movie__more-btn {
+    max-width: 240px;
+  }
+}
