@@ -1,4 +1,4 @@
-.card{
+.card {
   max-width: 364px;
   height: 281px;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
@@ -13,7 +13,7 @@
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
-  padding: 9px 16px 10px 16px;
+  padding: 12px 16px 10px 16px;
 }
 
 .card__image {
@@ -48,4 +48,18 @@
 .card__like_liked {
   background-image: url('../../images/like-icon.svg');
 }
-
+@media screen and (max-width: 800px) {
+  .card__two-columns {
+    padding: 5px 14px 10px 14px;
+  }
+  .card {
+    height: 262px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .card__two-columns {
+  }
+  .card {
+    height: 237px;
+  }
+} 

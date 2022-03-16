@@ -4,7 +4,6 @@ import poster from '../../images/poster-1.jpg'
 
 export default function MoviesCard({ typeList }) {
   const [like, setLike] = useState(false);
-
   return (
     <article className="card">
       <img className="card__image" src={poster} alt='Постер к фильму' />

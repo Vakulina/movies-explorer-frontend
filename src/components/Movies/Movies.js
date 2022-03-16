@@ -9,7 +9,7 @@ export default function Movies({isLoading}) {
 <Header isLogin={true} />
 {isLoading&&<Preloader />}
 <SearchForm />
-<MoviesCardList/>
+<MoviesCardList typeList='search-movies'/>
 </>
   );
 }
