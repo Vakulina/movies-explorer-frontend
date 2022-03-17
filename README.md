@@ -3,6 +3,6 @@
 авторизации еще нет, поэтому почту и пароль можно не заполнять,
 нажать войти.
 
-http://movies-project.nomoredomains.work/
+https://movies-project.nomoredomains.work/
   
 Архив с макетом https://disk.yandex.ru/d/6NfYbLOSKh7fbA
