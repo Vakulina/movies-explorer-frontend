@@ -31,9 +31,9 @@ export default function Register() {
           <button className='register__button register__button_registration'>Зарегистрироваться</button>
           <span className='register__sign'>Уже зарегистрированы?</span>
           <Link to="/signin" className="register__link register__link_enter">
-              Войти
-            </Link>
-            </div>
+            Войти
+          </Link>
+        </div>
       </form>
     </section>
   );
