@@ -23,7 +23,7 @@ export default function Register() {
           </div>
           <div className='register__field'>
             <label className='register__label' htmlFor='password'>Пароль</label>
-            <input className='register__input register__input_error' type='password' value={"**********"} id='password' required />
+            <input className='register__input register__input_error' type='password' value={"**************"} id='password' required />
           </div>
           <span className='register__error'>Что-то пошло не так...</span>
         </div>
