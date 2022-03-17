@@ -1,0 +1,116 @@
+.profile {
+  background-color: #fff;
+  width: 100%;
+  padding: 60px 0 70px 0;
+  box-sizing: border-box;
+}
+.profile__form {
+  max-width: 410px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.profile__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 118px;
+}
+.profile__field {
+  display: flex;
+}
+.profile__fields {
+  margin-bottom: 215px;
+}
+.profile__label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13px;
+  width: 141px;
+  display: flex;
+  align-items: center;
+}
+.profile__input {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  height: 20px;
+  background-color: none;
+  border: none;
+  width: 100%;
+  text-align: right;
+}
+.profile__input:active, .profile__input:focus {
+  outline: 3px solid rgb(255, 153, 0);
+  border-radius: 3px;
+  border-color: #fff;
+}
+.profile__input::placeholder {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  text-align: right;
+  color: #000000;
+}
+.profile__buttons {
+  display: flex;
+  flex-direction: column;
+}
+.profile__line {
+  height: 1px;
+  width: 100%;
+  background-color: #E8E8E8;
+  margin-top: 13px;
+  margin-bottom: 14px;
+}
+.profile__button {
+  box-sizing: border-box;
+  border: none;
+  background-color: #fff;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  margin-bottom: 16px;
+  transition: 00.5s;
+}
+.profile__button_exit {
+  color: #EE3465;
+}
+.profile__button:hover {
+  color: #2BE080;
+}
+@media (max-width: 800px){
+  .profile {
+    padding: 220px 30px 0px 30px;;
+  }
+  .profile__title {
+    margin-bottom: 92px;
+  }
+  .profile__fields {
+    margin-bottom: 203px;
+  }
+}
+@media (max-width: 400px){
+  .profile {
+    padding: 55px 30px 0px 30px;;
+  }
+  .profile__title {
+    margin-bottom: 75px;
+  }
+  .profile__fields {
+    margin-bottom: 372px;
+  }
+  .profile__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
