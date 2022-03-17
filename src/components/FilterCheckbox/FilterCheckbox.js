@@ -6,7 +6,7 @@ export default function FilterCheckbox() {
   return (
     <div className="filter-checkbox">
       <input type="checkbox" id="shortFilms" name="shortFilms" className="filter-checkbox__input"
-       checked={checkedInput} onChange={() => setChecked(!checkedInput)} />
+        checked={checkedInput} onChange={() => setChecked(!checkedInput)} />
       <label className="filter-checkbox__label" htmlFor="shortFilms">Короткометражки</label>
     </div>
   )

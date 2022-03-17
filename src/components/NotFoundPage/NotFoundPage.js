@@ -1,7 +1,5 @@
 import "./NotFoundPage.css";
 import { useNavigate, useLocation } from "react-router-dom";
-
-
 export default function NotFoundPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,9 +16,9 @@ export default function NotFoundPage() {
     <div className="not-found-page">
       <h1 className="not-found-page__title">404</h1>
       <p className="not-found-page__subtitle">Страница не найдена</p>
-      <button type="not-found-page__button" onClick={handleBack}>
-      Назад
-    </button>
+      <button className="not-found-page__button" onClick={handleBack}>
+        Назад
+      </button>
     </div>
   );
 }

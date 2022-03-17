@@ -2,7 +2,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import useResize from '../useResize/useResize';
 //временно создадим массив из одинаковых карточек, пока не получаем данных с сервера
-export default function MoviesCardList({typeList}) {
+export default function MoviesCardList({ typeList }) {
   let width = useResize();
   const changeCountItems = (width) => {
     if (width > 768) {
@@ -15,12 +15,13 @@ export default function MoviesCardList({typeList}) {
       return 5
     }
   }
- 
+
   return (
     <section className='listMovies'>
-      { [...Array(changeCountItems(width))].map((item, index) => {
-      return <MoviesCard key={index} typeList = {typeList} /> } ) 
-      } 
+      {[...Array(changeCountItems(width))].map((item, index) => {
+        return <MoviesCard key={index} typeList={typeList} />
+      })
+      }
     </section>
   )
 }

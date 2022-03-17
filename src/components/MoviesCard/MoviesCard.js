@@ -13,7 +13,7 @@ export default function MoviesCard({ typeList }) {
           onClick={() => setLike(!like)} type="button"></button>}
         {(typeList === 'saved-movies') && <button className='card__delete' type="button"></button>}
       </div>
-        <p className="card__duration">1ч 47м</p>    
+      <p className="card__duration">1ч 47м</p>
     </article>
   )
 }

@@ -51,7 +51,6 @@ export default function BurgerNavigation() {
               Аккаунт
               <img className="burger__account-img" src={account_img} alt='иконка аккаунта' />
             </Link>
-
           </div>
         </>
       }
