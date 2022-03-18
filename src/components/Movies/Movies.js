@@ -9,7 +9,7 @@ export default function Movies({ isLoading }) {
     <section className='movie'>
       <Header isLogin={true} />
       {isLoading && <Preloader />}
-      <SearchForm />
+      <SearchForm typeList='search-movies'/>
       <MoviesCardList typeList='search-movies' />
       <button className='movie__more-btn'>Ещё</button>
       <Footer />
