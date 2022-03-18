@@ -10,7 +10,7 @@ export default function SavedMovies({ isLoading }) {
     <section className='saved-movie'>
       <Header isLogin={true} />
       {isLoading && <Preloader />}
-      <SearchForm />
+      <SearchForm typeList='saved-movies'/>
       <MoviesCardList typeList='saved-movies' />
       <Footer />
     </section>
