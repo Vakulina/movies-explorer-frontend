@@ -14,7 +14,7 @@ import { mainApi } from '../../utils/MainApi'
 
 function App() {
   const [currentUser, setUser] = useState({ name: '', email: '' });
-  const [isLogin, toggleLogin] = useState(false);
+  const [isLogin, toggleLogin] = useState(false);  //if LocalStorage.filter === true то isLogin= true
   
   useEffect(()=>{
     mainApi.getInfoUser()
@@ -27,19 +27,17 @@ function App() {
       .catch((err) => {
         toggleLogin(false);
       });
-    }, [])
- /*setUser((actual)=>{ 
-   return {...actual, name:actual.name, email:actual.email}
-        })*/
+    }, [isLogin])
+
     const handleRegister = (user) =>{
       mainApi.postUser(user)
-
       .then((res)=>{
-        console.log(res.data)
         const newUser={email:res.data.email, password:user.password, }
         mainApi.loginUser(newUser)
-
       })
+    }
+    const handleLogin = () =>{
+
     }
 
   return (
@@ -51,7 +49,7 @@ function App() {
             <Route path="/movies" element={<Movies />} />
             <Route path="/saved-movies" element={<SavedMovies />} />
             <Route path="/signup" element={<Register onRegister={handleRegister} />} />
-            <Route path="/signin" element={<Login />} />
+            <Route path="/signin" element={<Login onLogin={handleLogin} />} />
             <Route path="/profile" element={<Profile />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
