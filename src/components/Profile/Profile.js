@@ -1,10 +1,10 @@
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 import Header from '../Header/Header';
 
-
 export default function Profile() {
-  const name='Виталий';
-  const mail='pochta@yandex.ru';
+  const {name, mail} = useContext(CurrentUserContext);
   return (
         <>
           <Header isLogin={true}/>
@@ -14,12 +14,12 @@ export default function Profile() {
               <div className='profile__fields'>
                 <div className='profile__field'>
                   <label className='profile__label' htmlFor='name'>Имя</label>
-                  <input className='profile__input' placeholder={name} id='name'/>
+                  <input className='profile__input' value={name} id='name'/>
                 </div>
                 <div className='profile__line'></div>
                 <div className='profile__field'>
                   <label className='profile__label' htmlFor='mail'>E-mail</label>
-                  <input className='profile__input' placeholder={mail} id='mail'/>
+                  <input className='profile__input' value={mail}  id='mail'/>
                 </div>
                 </div>
                 <div className='profile__buttons'>

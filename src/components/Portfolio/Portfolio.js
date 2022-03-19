@@ -1,6 +1,9 @@
+
 import './Portfolio.css';
 
+
 export default function Portfolio() {
+
 return(
   <>
   <h3 className='portfolio__title'>Портфолио</h3>

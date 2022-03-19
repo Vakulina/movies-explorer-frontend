@@ -1,7 +1,7 @@
 import path from 'path';
 
 const configConnection = {
-  url: 'https://https://api.movies-project.nomoredomains.work/',
+  url: 'https://api.movies-project.nomoredomains.work/',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -21,7 +21,7 @@ class MainApi {
     }
   }
   getInfoUser() {
-    const url = new URL(path.join('users', 'me'), this._url).href;
+    const url ='https://api.movies-project.nomoredomains.work/users/me'
     return fetch(url, {
       method: "GET",
       credentials: 'include',
