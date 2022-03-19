@@ -87,7 +87,9 @@ export default function Register({ onRegister }) {
               e.preventDefault();
               onRegister(updatedUser);
             }
-            }>Зарегистрироваться</button>
+            }>
+            Зарегистрироваться
+          </button>
           <span className='register__sign'>Уже зарегистрированы?</span>
           <Link
             to="/signin"

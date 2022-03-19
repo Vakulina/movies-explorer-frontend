@@ -20,7 +20,7 @@ function App() {
     mainApi.getInfoUser()
     .then((res)=>{
       if (res) {
-        setUser(res.user);
+        setUser(res);
         toggleLogin(true);
         }
       })
@@ -28,10 +28,18 @@ function App() {
         toggleLogin(false);
       });
     }, [])
- 
-    const handleRegister = ({name,email, password}) =>{
-      console.log(name, password, email)
-      mainApi.postUser()
+ /*setUser((actual)=>{ 
+   return {...actual, name:actual.name, email:actual.email}
+        })*/
+    const handleRegister = (user) =>{
+      mainApi.postUser(user)
+
+      .then((res)=>{
+        console.log(res.data)
+        const newUser={email:res.data.email, password:user.password, }
+        mainApi.loginUser(newUser)
+
+      })
     }
 
   return (
