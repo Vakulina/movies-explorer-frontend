@@ -1,5 +1,3 @@
-import path from 'path';
-
 const configConnection = {
   url: 'https://api.movies-project.nomoredomains.work/',
   headers: {
@@ -21,7 +19,7 @@ class MainApi {
     }
   }
   getInfoUser() {
-    const url ='https://api.movies-project.nomoredomains.work/users/me'
+    const url =`${this._url}users/me`
     return fetch(url, {
       method: "GET",
       credentials: 'include',
@@ -29,7 +27,7 @@ class MainApi {
     }).then(this._checkRequest);
   }
   updateUserInfo(name, email) {
-    const url = new URL(path.join('users', 'me'), this._url).href;
+    const url = `${this._url}users/me`
     return fetch(url, {
       method: "PATCH",
       credentials: 'include',
@@ -38,7 +36,7 @@ class MainApi {
     }).then(this._checkRequest);
   }
   getSavedMovies() {
-    const url = new URL(path.join('movies'), this._url).href;
+    const url = `${this._url}/movies`
     return fetch(url, {
       method: "GET",
       credentials: 'include',
@@ -47,7 +45,7 @@ class MainApi {
   }
 
   postNewMovie(movie) {
-    const url = new URL(path.join('movies'), this._url).href;
+    const url = `${this._url}/movies`
     return fetch(url, {
       method: "POST",
       credentials: 'include',
@@ -57,7 +55,7 @@ class MainApi {
   }
 
   postUser(user) {
-    const url = new URL(path.join('signup'), this._url).href;
+    const url = `${this._url}/signup`
     return fetch(url, {
       method: "POST",
       body: JSON.stringify(user),
@@ -65,7 +63,7 @@ class MainApi {
     }).then(this._checkRequest);
   }
   loginUser({name, email}) {
-    const url = new URL(path.join('signin'), this._url).href;
+    const url = `${this._url}/signin`
     return fetch(url, {
       method: "POST",
       body: JSON.stringify({name, email}),
@@ -73,7 +71,7 @@ class MainApi {
     }).then(this._checkRequest);
   }
   unloginUser(){
-    const url = new URL(path.join('signout'), this._url).href;
+    const url = `${this._url}/signout`
     return fetch(url, {
       method: "POST",
       headers: this._headers,
@@ -81,7 +79,7 @@ class MainApi {
   }
 
   deleteMovie(id) {
-    const url = new URL(path.join('cards', id), this._url).href;
+    const url = `${this._url}/movies/_${id}`
     return fetch(url, {
       method: "DELETE",
       credentials: 'include',
