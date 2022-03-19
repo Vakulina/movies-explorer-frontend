@@ -12,7 +12,7 @@ class MainApi {
     this._url = config.url;
     this._headers = config.headers;
   }
-  
+
   _checkRequest(res) {
     if (res.ok) {
       return res.json();
@@ -39,13 +39,12 @@ class MainApi {
   }
   getSavedMovies() {
     const url = new URL(path.join('movies'), this._url).href;
-    console.log(url);
-     return fetch(url, {
-       method: "GET",
-       credentials: 'include',
-       headers: this._headers,
-     }).then(this._checkRequest);
-   }
+    return fetch(url, {
+      method: "GET",
+      credentials: 'include',
+      headers: this._headers,
+    }).then(this._checkRequest);
+  }
 
   postNewMovie(movie) {
     const url = new URL(path.join('movies'), this._url).href;
@@ -53,6 +52,30 @@ class MainApi {
       method: "POST",
       credentials: 'include',
       body: JSON.stringify(movie),
+      headers: this._headers,
+    }).then(this._checkRequest);
+  }
+
+  postUser(user) {
+    const url = new URL(path.join('signup'), this._url).href;
+    return fetch(url, {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: this._headers,
+    }).then(this._checkRequest);
+  }
+  loginUser({name, email}) {
+    const url = new URL(path.join('signin'), this._url).href;
+    return fetch(url, {
+      method: "POST",
+      body: JSON.stringify({name, email}),
+      headers: this._headers,
+    }).then(this._checkRequest);
+  }
+  unloginUser(){
+    const url = new URL(path.join('signout'), this._url).href;
+    return fetch(url, {
+      method: "POST",
       headers: this._headers,
     }).then(this._checkRequest);
   }
