@@ -3,5 +3,4 @@
 
 https://movies-project.nomoredomains.work/
 Архив с макетом https://disk.yandex.ru/d/6NfYbLOSKh7fbA
->>>>>>> level-2
 
