@@ -26,7 +26,7 @@ class MainApi {
       credentials: 'include',
       }).then(this._checkRequest);
   }
-  updateUserInfo(name, email) {
+  updateUserInfo({name, email}) {
     const url = `${this._url}users/me`
     return fetch(url, {
       method: "PATCH",

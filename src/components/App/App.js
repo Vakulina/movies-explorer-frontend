@@ -11,7 +11,8 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { IsLoginContext } from '../../contexts/IsLoginContext';
 import './App.css';
 import { mainApi } from '../../utils/MainApi';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoutForUnreg from '../ProtectedRoutForUnreg/ProtectedRoutForUnreg'
 
 function App() {
   const [currentUser, setUser] = useState({ name: '', email: '' });
@@ -38,6 +39,7 @@ function App() {
         mainApi.loginUser(newUser)
           .then(() => {
             toggleLogin(true)
+            setUser(user)
             navigate('/movies')
           })
 
@@ -45,12 +47,22 @@ function App() {
   }
   const handleLogin = (user) => {
     mainApi.loginUser(user)
-      .then(() => {
+      .then((res) => {
+        setUser(user)
         toggleLogin(true)
         navigate('/movies')
       })
   }
-  const handleChange = () => {
+  const handleChangeProfile = (user) => {
+    mainApi.updateUserInfo(user)
+    .then(()=>{
+      setUser((actual) => {
+        return {
+          ...actual,
+          name: user.name
+        }
+      })
+    })
   }
 
   const handleOut = () => {
@@ -74,12 +86,27 @@ function App() {
             <Route path="/saved-movies" element={
               <ProtectedRoute component={SavedMovies} />
             } />
-            <Route path="/signup" element={<Register onRegister={handleRegister} />} />
-            <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+          
+            <Route path="/signup" element={
+              <ProtectedRoutForUnreg 
+              component={Register}
+              onRegister={handleRegister}
+              />
+            }
+             />
+            <Route path="/signin" element={
+              <ProtectedRoutForUnreg 
+              component={Login}
+              onLogin={handleLogin} 
+              />
+            }
+             />
+            
+            
             <Route path="/profile" element={
               <ProtectedRoute
                 component={Profile}
-                onChange={handleChange}
+                onChange={handleChangeProfile}
                 onOut={handleOut}
               />
             } />
