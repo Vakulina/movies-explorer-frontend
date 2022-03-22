@@ -16,7 +16,7 @@ import ProtectedRoutForUnreg from '../ProtectedRoutForUnreg/ProtectedRoutForUnre
 
 function App() {
   const [currentUser, setUser] = useState({ name: '', email: '' });
-  const [isLogin, toggleLogin] = useState(false);  //if LocalStorage.filter === true то isLogin= true
+  const [isLogin, toggleLogin] = useState(true);  //if LocalStorage.filter === true то isLogin= true
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,9 +48,10 @@ function App() {
   const handleLogin = (user) => {
     mainApi.loginUser(user)
       .then((res) => {
+        navigate('/movies')
         setUser(user)
         toggleLogin(true)
-        navigate('/movies')
+        
       })
   }
   const handleChangeProfile = (user) => {
