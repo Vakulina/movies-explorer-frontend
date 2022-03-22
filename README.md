@@ -1,12 +1,3 @@
-Чтобы посмотреть страницы <Main> <Login>, <Register> с фильмами нужно: 
-зайти с главной стартовой страницы "войти", 
-авторизации еще нет, поэтому почту и пароль можно не заполнять,
-нажать войти.
-
-https://movies-project.nomoredomains.work/
-  
-
-
 ## Фронтенд дипломного проекта Яндекс.Практикум.
 
 ### Сервис по поиску и сохранению понравившихся фильмов с регистрацией и авторизацией (простой аналог "Кинопоиска")
@@ -27,6 +18,6 @@ https://movies-project.nomoredomains.work/
 4. Реализация поиска по кличевым словам
   
 #### :link: Архив с макетом https://disk.yandex.ru/d/6NfYbLOSKh7fbA 
-#### :link: Домен сервера (фронтенд) - [https://movies-project.nomoredomains.work/)
-#### :link: Домен сервера (бэкенд) - (https://api.movies-project.nomoredomains.work/)
-#### :link: GitHub репозиторий (бэкенд) - [https://github.com/Vakulina/movies-explorer-api](https://github.com/Vakulina/movies-explorer-api)
+#### :link: Домен сервера (фронтенд) - https://movies-project.nomoredomains.work/
+#### :link: Домен сервера (бэкенд) - https://api.movies-project.nomoredomains.work/
+#### :link: GitHub репозиторий (бэкенд) - https://github.com/Vakulina/movies-explorer-api
