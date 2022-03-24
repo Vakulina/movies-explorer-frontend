@@ -1,4 +1,4 @@
-const DEFAULT_ERROR_MESSAGE = "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
+import { DEFAULT_ERROR_MESSAGE } from './constants';
 const configConnection = {
   url: 'https://api.movies-project.nomoredomains.work/',
   headers: {
@@ -13,6 +13,7 @@ class MainApi {
   }
 
   _checkRequest(res) {
+
     if (res.ok) {
       return res.json();
     } else {

@@ -8,18 +8,18 @@ export default function useFormWithValidation() {
 
   const handleChange = (event) => {
     const target = event.target;
-    const id = target.id;
+    const name = target.name;
     const value = target.value;
     let message= target.validationMessage;
 
     const nameError = "Имя может содержать только латинские буквы, кириллицу, знаки дефиса и пробела"; 
-    if ((id === 'name')&&(target.validity.patternMismatch)) { message = nameError }
+    if ((name === 'name')&&(!target.validity.typeMismatch)&&(!target.checkValidity())) { message = nameError }
     
     const emailError = "Введите корректный email"; 
-    if ((id === 'email')&&(target.validity.patternMismatch)) { message = emailError }
+    if ((name === 'email')&&(!target.validity.typeMismatch)&&(!target.checkValidity())) { message = emailError }
     
-    setValues({...values, [id]: value});
-    setErrors({...errors, [id]:  message});
+    setValues({...values, [name]: value});
+    setErrors({...errors, [name]:  message});
     setIsValid(target.closest("form").checkValidity());
   };
 

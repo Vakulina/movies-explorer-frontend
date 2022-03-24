@@ -3,10 +3,14 @@ import { Navigate } from "react-router-dom";
 import { useContext } from 'react';
 import { IsLoginContext } from '../../contexts/IsLoginContext'
 //защитить роуты /signup и /signin для зарегистрированных пользователей
-function ProtectedRoutForUnreg({ component: Component, ...props }) {
+function ProtectedRoutForReg({ component: Component, ...props }) {
   const isLogin = useContext(IsLoginContext);
+  React.useEffect(() => {
+
+  }, [])
+  
   return (
     isLogin ? <Navigate to="/profile" /> : <Component {...props} /> 
   );
 };
-export default ProtectedRoutForUnreg;
+export default ProtectedRoutForReg;

@@ -5,15 +5,11 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Register.css';
 import React from 'react';
 import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
+import { DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
+
 export default function Register({ onRegister, isError }) {
-
-  const { name, email } = useContext(CurrentUserContext);
-  const [updatedUser, updateUser] = useState({ name, email, password: '' });
   const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
-
-
-  /*register__input_error 
-  register__form_validity*/
+  
   return (
     <section className='register'>
       <Link className="register__link register__link_logo" to='/'>
@@ -30,8 +26,7 @@ export default function Register({ onRegister, isError }) {
               htmlFor='name'>Имя</label>
             <input
               className='register__input'
-              placeholder={name}
-              id='name'
+              name='name'
               type="text"
               minLength ='2'
               maxLength = '30'
@@ -47,10 +42,8 @@ export default function Register({ onRegister, isError }) {
             <input
               className='register__input'
               type='email'
-              placeholder={email}
               onChange={handleChange}
-              id='email'
-              name="email"
+              name='email'
               pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
               required />
                  {!isValid&&<span className='register__error'>{errors.email}</span>}
@@ -61,7 +54,7 @@ export default function Register({ onRegister, isError }) {
               className='register__input'
               type='password'
               onChange={handleChange}
-              id='password'
+              name='password'
               minLength='8'
               required />
                 {!isValid&&<span className='register__error'>{errors.password}</span>}
@@ -75,7 +68,9 @@ export default function Register({ onRegister, isError }) {
             disabled={!isValid}
             onClick={(e) => {
               e.preventDefault();
-              onRegister(updatedUser);
+              onRegister(values)
+              .then(() => resetForm())
+              .catch((err) => {throw new Error(DEFAULT_ERROR_MESSAGE)})
             }
             }>
             Зарегистрироваться

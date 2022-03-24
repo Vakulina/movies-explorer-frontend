@@ -12,7 +12,7 @@ import { IsLoginContext } from '../../contexts/IsLoginContext';
 import './App.css';
 import { mainApi } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import ProtectedRoutForUnreg from '../ProtectedRoutForUnreg/ProtectedRoutForUnreg'
+import ProtectedRoutForReg from '../ProtectedRoutForReg/ProtectedRoutForReg'
 
 function App() {
   const [currentUser, setUser] = useState({ name: '', email: '' });
@@ -24,9 +24,10 @@ function App() {
     mainApi.getInfoUser()
       .then((user) => {
         if (user) {
+          
           setUser(user);
           toggleLogin(true);
-        }
+          }
       })
       .catch((err) => {
         toggleLogin(false);
@@ -41,7 +42,8 @@ function App() {
           .then(() => {
             toggleLogin(true)
             setUser(user)
-            navigate('/movies')
+            setError('');
+            navigate('/movies');
           })
       })
       .catch(err => setError(err.message))
@@ -51,8 +53,11 @@ function App() {
       .then((res) => {
         toggleLogin(true)
         setUser(user)
+        setError('');
         navigate('/movies')
-        
+            })
+      .catch(err => {  
+        setError(err.message)
       })
   }
   const handleChangeProfile = (user) => {
@@ -90,7 +95,7 @@ function App() {
             } />
           
             <Route path="/signup" element={
-              <ProtectedRoutForUnreg 
+              <ProtectedRoutForReg
               component={Register}
               isError={isError}
               onRegister={handleRegister}
@@ -98,7 +103,8 @@ function App() {
             }
              />
             <Route path="/signin" element={
-              <ProtectedRoutForUnreg 
+              <ProtectedRoutForReg
+              isError={isError}
               component={Login}
               onLogin={handleLogin} 
               />
