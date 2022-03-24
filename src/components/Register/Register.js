@@ -4,38 +4,24 @@ import logo from '../../images/logo__header.svg';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Register.css';
 import React from 'react';
-
+import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
 export default function Register({ onRegister }) {
 
   const { name, email } = useContext(CurrentUserContext);
   const [updatedUser, updateUser] = useState({ name, email, password: '' });
-
+  const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
   function handleCurrentName(e) {
-    updateUser((actual) => {
-      return {
-        ...actual,
-        name: e.target.value
-      }
-    });
+handleChange(e)
   }
   function handleCurrentEmail(e) {
-    updateUser((actual) => {
-      return {
-        ...actual,
-        email: e.target.value
-      }
-    });
+    handleChange(e)
   }
   function handleCurrentPassword(e) {
-    updateUser((actual) => {
-      return {
-        ...actual,
-        password: e.target.value
-      }
-    });
+    handleChange(e)
   }
 
-  /*register__input_error */
+  /*register__input_error 
+  register__form_validity*/
   return (
     <section className='register'>
       <Link className="register__link register__link_logo" to='/'>
@@ -43,7 +29,7 @@ export default function Register({ onRegister }) {
           className="register__logo"
           alt="логотип" />
       </Link>
-      <form className='register__form'>
+      <form className='register__form ' noValidate>
         <h1 className='register__title'>Добро пожаловать! </h1>
         <div className='register__fields'>
           <div className='register__field'>
@@ -54,31 +40,41 @@ export default function Register({ onRegister }) {
               className='register__input'
               placeholder={name}
               id='name'
+              type="text"
+              minLength ='2'
+              maxLength = '30'
+              pattern='[A-Za-zа-яА-Я -]+'
               required
-              onChange={handleCurrentName} />
+              onChange={handleChange} />
+                {!isValid&&<span className='register__error'>{errors.name}</span>}
           </div>
           <div className='register__field'>
             <label
               className='register__label'
-              htmlFor='mail'>E-mail</label>
+              htmlFor='email'>E-mail</label>
             <input
               className='register__input'
               type='email'
               placeholder={email}
-              onChange={handleCurrentEmail}
-              id='mail'
+              onChange={handleChange}
+              id='email'
+              name="email"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
               required />
+                 {!isValid&&<span className='register__error'>{errors.email}</span>}
           </div>
           <div className='register__field'>
             <label className='register__label' htmlFor='password'>Пароль</label>
             <input
               className='register__input'
               type='password'
-              onChange={handleCurrentPassword}
+              onChange={handleChange}
               id='password'
+              minLength='8'
               required />
+                {!isValid&&<span className='register__error'>{errors.password}</span>}
           </div>
-          <span className='register__error'>Что-то пошло не так...</span>
+        
         </div>
         <div className='register__buttons'>
           <button

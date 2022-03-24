@@ -48,9 +48,9 @@ function App() {
   const handleLogin = (user) => {
     mainApi.loginUser(user)
       .then((res) => {
-        navigate('/movies')
-        setUser(user)
         toggleLogin(true)
+        setUser(user)
+        navigate('/movies')
         
       })
   }
