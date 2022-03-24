@@ -15,6 +15,9 @@ export default function useFormWithValidation() {
     const nameError = "Имя может содержать только латинские буквы, кириллицу, знаки дефиса и пробела"; 
     if ((id === 'name')&&(target.validity.patternMismatch)) { message = nameError }
     
+    const emailError = "Введите корректный email"; 
+    if ((id === 'email')&&(target.validity.patternMismatch)) { message = emailError }
+    
     setValues({...values, [id]: value});
     setErrors({...errors, [id]:  message});
     setIsValid(target.closest("form").checkValidity());
