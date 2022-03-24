@@ -8,7 +8,6 @@ export default function Login({onLogin}) {
  const [user, setUser]=useState({email:'', password:''});
  const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
  
-
  const handleEnter = (e)=> {
   e.preventDefault();
   onLogin(user)
@@ -40,6 +39,7 @@ export default function Login({onLogin}) {
          
         </div>
         <div className='login__buttons'>
+        <span className='login__error login__error_server'></span>
           <button className='login__button login__button_enter' onClick={handleEnter} disabled={!isValid}>Войти</button>
           <span className='login__sign'>Еще не зарегистрированы?</span>
           <Link to="/signup" className="login__link login__link_registration">

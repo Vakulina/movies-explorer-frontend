@@ -73,6 +73,11 @@
   margin-right: 7px;
   color: #A0A0A0;
 }
+.login__error_server {
+  position: absolute;
+  top: -60px;
+  left: 0;
+}
 .login__button_enter:hover {
   filter: grayscale(60%);
 }
@@ -87,6 +92,7 @@
 }
 .login__buttons {
   text-align: center;
+  position: relative;
 }
 .login__error {
   font-size: 10px;

@@ -53,6 +53,11 @@
 .register__input:focus {
   outline: 3px solid rgb(255, 153, 0);
 }
+.register__error_server {
+  position: absolute;
+  top: -60px;
+  left: 0;
+}
 .register__button_registration{
   background-color:#2BE080;
   height: 45px;
@@ -96,6 +101,7 @@
 }
 .register__buttons {
   text-align: center;
+  position: relative;
 }
 .register__error {
   font-size: 10px;
@@ -108,7 +114,6 @@
 
 .register__fields {
   margin-bottom: 70px;
-  position: relative;
 }
 @media (max-width: 450px){
   .register{
