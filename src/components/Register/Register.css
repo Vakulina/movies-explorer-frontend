@@ -8,6 +8,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: 95px;
 }
 .register__link_logo {
   display: block;
@@ -38,7 +39,6 @@
   height: 46px;
   border: none;
   border-radius: 8px;
-  margin-bottom: 18px;
   padding-left: 15px;
 }
 .register__input_error {
@@ -68,6 +68,12 @@
   cursor: pointer;
   transition: 0.5s;
 }
+.register__button_registration:disabled {
+  opacity: 0.8;
+}
+.register__button_registration:disabled:hover {
+  filter: grayscale(0%);
+}
 .register__sign {
   font-size: 14px;
   font-weight: 400;
@@ -92,14 +98,14 @@
   text-align: center;
 }
 .register__error {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   font-size: 10px;
   font-weight: 400;
   line-height: 12px;
   color: #EE3465;
+  min-height: 15px;
+  padding-top: 5px;
 }
+
 .register__fields {
   margin-bottom: 70px;
   position: relative;

@@ -10,15 +10,7 @@ export default function Register({ onRegister }) {
   const { name, email } = useContext(CurrentUserContext);
   const [updatedUser, updateUser] = useState({ name, email, password: '' });
   const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
-  function handleCurrentName(e) {
-handleChange(e)
-  }
-  function handleCurrentEmail(e) {
-    handleChange(e)
-  }
-  function handleCurrentPassword(e) {
-    handleChange(e)
-  }
+
 
   /*register__input_error 
   register__form_validity*/
@@ -79,6 +71,7 @@ handleChange(e)
         <div className='register__buttons'>
           <button
             className='register__button register__button_registration'
+            disabled={!isValid}
             onClick={(e) => {
               e.preventDefault();
               onRegister(updatedUser);
