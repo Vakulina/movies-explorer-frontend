@@ -18,6 +18,7 @@ function App() {
   const [currentUser, setUser] = useState({ name: '', email: '' });
   const [isLogin, toggleLogin] = useState(true);  //if LocalStorage.filter === true то isLogin= true
   const navigate = useNavigate();
+  const [isError, setError] = useState('')
 
   useEffect(() => {
     mainApi.getInfoUser()
@@ -42,8 +43,8 @@ function App() {
             setUser(user)
             navigate('/movies')
           })
-
       })
+      .catch(err => setError(err.message))
   }
   const handleLogin = (user) => {
     mainApi.loginUser(user)
@@ -91,6 +92,7 @@ function App() {
             <Route path="/signup" element={
               <ProtectedRoutForUnreg 
               component={Register}
+              isError={isError}
               onRegister={handleRegister}
               />
             }

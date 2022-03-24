@@ -1,3 +1,4 @@
+const DEFAULT_ERROR_MESSAGE = "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
 const configConnection = {
   url: 'https://api.movies-project.nomoredomains.work/',
   headers: {
@@ -15,25 +16,31 @@ class MainApi {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject(res.statusText);
+      return res.json()
+        .then(data => {
+          const message = `Что-то пошло не так... ${data.message}` || DEFAULT_ERROR_MESSAGE;
+          return Promise.reject(new Error(message));
+        });
     }
   }
+
+
   getInfoUser(user) {
-    const url =`${this._url}users/me`
+    const url = `${this._url}users/me`
     return fetch(url, {
       method: "GET",
       headers: this._headers,
       credentials: 'include',
-      }).then(this._checkRequest);
+    }).then(this._checkRequest);
   }
-  updateUserInfo({name, email}) {
+  updateUserInfo({ name, email }) {
     const url = `${this._url}users/me`
     return fetch(url, {
       method: "PATCH",
       headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({ name, email }),
-      
+
     }).then(this._checkRequest);
   }
   getSavedMovies() {
@@ -42,7 +49,7 @@ class MainApi {
       method: "GET",
       headers: this._headers,
       credentials: 'include',
-     }).then(this._checkRequest);
+    }).then(this._checkRequest);
   }
 
   postNewMovie(movie) {
@@ -52,7 +59,7 @@ class MainApi {
       headers: this._headers,
       credentials: 'include',
       body: JSON.stringify(movie),
-     }).then(this._checkRequest);
+    }).then(this._checkRequest);
   }
 
   postUser(user) {
@@ -75,7 +82,7 @@ class MainApi {
     }).then(this._checkRequest);
   }
 
-  unloginUser(){
+  unloginUser() {
     const url = `${this._url}signout`
     return fetch(url, {
       method: "POST",

@@ -5,7 +5,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Register.css';
 import React from 'react';
 import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
-export default function Register({ onRegister }) {
+export default function Register({ onRegister, isError }) {
 
   const { name, email } = useContext(CurrentUserContext);
   const [updatedUser, updateUser] = useState({ name, email, password: '' });
@@ -69,7 +69,7 @@ export default function Register({ onRegister }) {
           
         </div>
         <div className='register__buttons'>
-        <span className='register__error register__error_server'></span>
+        <span className='register__error register__error_server'>{isError}</span>
           <button
             className='register__button register__button_registration'
             disabled={!isValid}
