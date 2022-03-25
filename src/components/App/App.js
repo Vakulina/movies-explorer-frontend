@@ -19,6 +19,7 @@ function App() {
   const [isLogin, toggleLogin] = useState(true);  //if LocalStorage.filter === true то isLogin= true
   const navigate = useNavigate();
   const [isError, setError] = useState('')
+  const [message, setMessageAboutSucces]=useState('')
 
   useEffect(()=>{
     setError('');
@@ -74,6 +75,7 @@ function App() {
       })
   }
   const handleChangeProfile = (user) => {
+    setError('');
     mainApi.updateUserInfo(user)
       .then(() => {
         setUser((actual) => {
@@ -82,11 +84,12 @@ function App() {
             ...user
           }
         });
-        setError('');
-        navigate('/movies')
+        setMessageAboutSucces('Данные успешно изменены!')
+        
       })
       .catch(err => {
         setError(err.message)
+        setMessageAboutSucces('')
       })
   }
 
@@ -138,6 +141,7 @@ function App() {
                 isError={isError}
                 onChange={handleChangeProfile}
                 onOut={handleOut}
+                message={message}
               />
             } />
             <Route path='*' element={<NotFoundPage />} />

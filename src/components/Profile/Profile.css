@@ -58,6 +58,14 @@
   top: -60px;
   left: 0;
 }
+.profile__message {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  color: #2BE080;
+  
+
+}
 .profile__input:active, .profile__input:focus {
   outline: 3px solid rgb(255, 153, 0);
   border-radius: 3px;

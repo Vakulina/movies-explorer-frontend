@@ -5,7 +5,7 @@ import './Profile.css';
 import Header from '../Header/Header';
 import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
 
-export default function Profile({onOut, onChange, isError}) {
+export default function Profile({onOut, onChange, isError, message}) {
   const user = useContext(CurrentUserContext);
   const isLogin = useContext(IsLoginContext);
   const [isChanged, setIsChanged]=useState(false);  //были ли изменения в инпутах
@@ -60,9 +60,12 @@ export default function Profile({onOut, onChange, isError}) {
                   
                 </div>
                 {!isValid&&<span className='profile__error'>{errors.email}</span>}
+                
+            
                 </div>
                 <div className='profile__buttons'> 
                 <span className='profile__error profile__error_server'>{!isChanged ? isError:''}</span>
+                <span className='profile__message'>{!isChanged ? message:''}</span>
                   <button className='profile__button' onClick={onHadleClickChange} disabled={!isChanged||!isValid}>Редактировать</button>
                   <button className='profile__button profile__button_exit' onClick={(e)=>{
                   e.preventDefault()
