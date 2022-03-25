@@ -9,25 +9,46 @@ import { moviesApi } from '../../utils/MoviesApi';
 import { mainApi } from '../../utils/MainApi';
 
 export default function Movies() {
-const [isLoading, setLoadingStatus] = useState(false);
-const [error, setError] = useState('');
-  useEffect(()=>{
+  const [isLoading, setLoadingStatus] = useState(false);
+  const [error, setError] = useState('');
+  const [moviesList, setMoviesList] = useState({});
+  const [filter, changeFilter] = useState('')
+
+  function getMovies() {
     setLoadingStatus(true)
-    moviesApi.getMovies() 
-    .then((res)=>{
-      console.log(res)
-      setLoadingStatus(false)
-    })
-    .catch((err)=> setError(err.message))
-  .finally(()=>setLoadingStatus(false))
-  },
-  [])
+    moviesApi.getMovies()
+      .then((res) => {
+        setError('')
+        setLoadingStatus(false)
+        localStorage.setItem('allMovies', JSON.stringify(res))
+        setMoviesList(res)
+      })
+      .catch((err) => {
+        localStorage.setItem('allMovies', {})
+        setError(err.message);
+      })
+      .finally(() => setLoadingStatus(false))
+  }
+  useEffect(() => {
+    getMovies()
+  }, [])
+  
+const handleChangeFilter = (event)=>{
+
+}
+
+  const handleEnterPress = (event) => {
+    if(event.key === 'Enter'){
+      handleChangeFilter(event)
+    }
+  }
+
   return (
     <section className='movie'>
       <Header isLogin={true} />
-      <SearchForm typeList='search-movies'/>
+      <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} />
       {isLoading && <Preloader />}
-      {error.length &&  <span className='search-movies__error'>{error}</span>}
+      {error.length && <span className='search-movies__error'>{error}</span>}
       <MoviesCardList typeList='search-movies' />
       <button className='movie__more-btn'>Ещё</button>
       <Footer />

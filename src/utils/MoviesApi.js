@@ -1,6 +1,6 @@
 import {DEFAULT_ERROR_MESSAGE} from './constants'
 const configConnection = {
-  url: 'https://api.nomoreparties.co/beatfilm-movies-1',
+  url: 'https://api.nomoreparties.co/beatfilm-movies',
   headers: {
     'Content-Type': 'application/json'
   }
