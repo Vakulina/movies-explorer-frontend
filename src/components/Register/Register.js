@@ -23,7 +23,7 @@ export default function Register({ onRegister, isError }) {
           <div className='register__field'>
             <label
               className='register__label'
-              htmlFor='name'>Имя</label>
+              htmlFor='register-name'>Имя</label>
             <input
               className='register__input'
               name='name'
@@ -32,19 +32,21 @@ export default function Register({ onRegister, isError }) {
               maxLength = '30'
               pattern='[A-Za-zа-яА-Я -]+'
               required
+              id='register-name'
               onChange={handleChange} />
                 {!isValid&&<span className='register__error'>{errors.name}</span>}
           </div>
           <div className='register__field'>
             <label
               className='register__label'
-              htmlFor='email'>E-mail</label>
+              htmlFor='register-email'>E-mail</label>
             <input
               className='register__input'
               type='email'
               onChange={handleChange}
               name='email'
               pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              id='register-email'
               required />
                  {!isValid&&<span className='register__error'>{errors.email}</span>}
           </div>
@@ -68,10 +70,9 @@ export default function Register({ onRegister, isError }) {
             disabled={!isValid}
             onClick={(e) => {
               e.preventDefault();
-              onRegister(values)
-              .then(() => resetForm())
-              .catch((err) => {throw new Error(DEFAULT_ERROR_MESSAGE)})
-            }
+              onRegister(values);
+             resetForm();
+             }
             }>
             Зарегистрироваться
           </button>

@@ -75,9 +75,13 @@ function App() {
       setUser((actual) => {
         return {
           ...actual,
-          name: user.name
+          ...user
         }
-      })
+      });
+      navigate('/movies')
+    })
+    .catch(err => {  
+      setError(err.message)
     })
   }
 
@@ -87,6 +91,9 @@ function App() {
         setUser({ name: '', email: '' });
         toggleLogin(false);
         navigate('/')
+      })
+      .catch(err => { 
+        setError(err.message)
       })
   }
 
@@ -119,11 +126,10 @@ function App() {
               />
             }
              />
-            
-            
             <Route path="/profile" element={
               <ProtectedRoute
                 component={Profile}
+                isError={isError}
                 onChange={handleChangeProfile}
                 onOut={handleOut}
               />

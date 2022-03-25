@@ -41,9 +41,6 @@
   border-radius: 8px;
   padding-left: 15px;
 }
-.register__input_error {
-  color: #EE3465;
-}
 .register__input::placeholder {
   font-size: 13px;
   font-weight: 400;
