@@ -7,17 +7,13 @@ import { DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
 
 export default function Login({onLogin, isError}) {
  const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
- 
+
  const handleEnter = (e)=> {
   e.preventDefault();
   onLogin(values)
-  .then(() => {
-    resetForm();
-    navigate('/movies');
-  })
-  .catch((err) => {throw new Error(DEFAULT_ERROR_MESSAGE)})
+  resetForm();
  }
-  const navigate = useNavigate();
+
   return (
     <section className='login'>
       <Link className="login__link login__link_logo" to='/'>

@@ -35,19 +35,19 @@ export default function BurgerNavigation() {
                   Главная
                   </span>
                 </Link>
-                <Link className="burger__link" to="/movies">
+                <Link className="burger__link" to="/movies" onClick={closeMenu}>
                 <span className='burger__item'>
                   Фильмы
                   </span>
                 </Link>
-                <Link className="burger__link" to="/saved-movies">
+                <Link className="burger__link" to="/saved-movies" onClick={closeMenu}>
                 <span className='burger__item'>
                   Сохраненные фильмы
                   </span>
                 </Link>
               </nav>
             </div>
-            <Link className="burger__link burger__link_account" to="/profile">
+            <Link className="burger__link burger__link_account" to="/profile" onClick={closeMenu}>
               Аккаунт
               <img className="burger__account-img" src={account_img} alt='иконка аккаунта' />
             </Link>

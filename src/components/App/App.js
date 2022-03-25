@@ -41,18 +41,27 @@ function App() {
         mainApi.loginUser(newUser)
           .then(() => {
             toggleLogin(true)
-            setUser(user)
+            setUser((actual)=>{
+              return {
+              ...actual, user
+            }
+          })
             setError('');
             navigate('/movies');
           })
       })
       .catch(err => setError(err.message))
   }
+
   const handleLogin = (user) => {
     mainApi.loginUser(user)
       .then((res) => {
         toggleLogin(true)
-        setUser(user)
+        setUser((actual)=>{
+          return {
+          ...actual, email: user.email
+        }
+      })
         setError('');
         navigate('/movies')
             })
