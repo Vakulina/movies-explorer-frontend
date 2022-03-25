@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState,  useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {IsLoginContext} from '../../contexts/IsLoginContext'
 import './Profile.css';
@@ -11,15 +11,16 @@ export default function Profile({onOut, onChange, isError}) {
   const [isChanged, setIsChanged]=useState(false);  //были ли изменения в инпутах
 
   const { values, handleChange, errors, isValid, resetForm  } = useFormWithValidation();
-
+  useEffect(()=>{
+    resetForm()
+  },[resetForm])
 
   const onHadleClickChange = (e)=>{
 
     e.preventDefault();
-    console.log(isChanged&&!isValid)
+    setIsChanged(false)
     onChange({...user, ...values});
-    resetForm();
-  }
+   }
   const handleChangeInput =(e)=>{
     handleChange(e);
     setIsChanged(true);
@@ -61,7 +62,7 @@ export default function Profile({onOut, onChange, isError}) {
                 {!isValid&&<span className='profile__error'>{errors.email}</span>}
                 </div>
                 <div className='profile__buttons'> 
-                <span className='profile__error profile__error_server'>{isError}</span>
+                <span className='profile__error profile__error_server'>{!isChanged ? isError:''}</span>
                   <button className='profile__button' onClick={onHadleClickChange} disabled={!isChanged||!isValid}>Редактировать</button>
                   <button className='profile__button profile__button_exit' onClick={(e)=>{
                   e.preventDefault()

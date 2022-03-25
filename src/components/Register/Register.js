@@ -9,7 +9,14 @@ import { DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
 
 export default function Register({ onRegister, isError }) {
   const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
-  
+  const [isChanged, setIsChanged]=useState(false);  //были ли изменения в инпутах
+  useEffect(()=>{
+    resetForm()
+  },[resetForm])
+  const handleChangeInput =(e)=>{
+    handleChange(e);
+    setIsChanged(true);
+  }
   return (
     <section className='register'>
       <Link className="register__link register__link_logo" to='/'>
@@ -33,7 +40,7 @@ export default function Register({ onRegister, isError }) {
               pattern='[A-Za-zа-яА-Я -]+'
               required
               id='register-name'
-              onChange={handleChange} />
+              onChange={handleChangeInput} />
                 {!isValid&&<span className='register__error'>{errors.name}</span>}
           </div>
           <div className='register__field'>
@@ -43,7 +50,7 @@ export default function Register({ onRegister, isError }) {
             <input
               className='register__input'
               type='email'
-              onChange={handleChange}
+              onChange={handleChangeInput}
               name='email'
               pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
               id='register-email'
@@ -55,7 +62,7 @@ export default function Register({ onRegister, isError }) {
             <input
               className='register__input'
               type='password'
-              onChange={handleChange}
+              onChange={handleChangeInput}
               name='password'
               minLength='8'
               required />
@@ -64,14 +71,14 @@ export default function Register({ onRegister, isError }) {
           
         </div>
         <div className='register__buttons'>
-        <span className='register__error register__error_server'>{isError}</span>
+        <span className='register__error register__error_server'>{!isChanged ? isError:''}</span>
           <button
             className='register__button register__button_registration'
             disabled={!isValid}
             onClick={(e) => {
               e.preventDefault();
+              setIsChanged(false)
               onRegister(values);
-             resetForm();
              }
             }>
             Зарегистрироваться
