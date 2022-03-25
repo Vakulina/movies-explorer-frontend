@@ -11,7 +11,7 @@ import { mainApi } from '../../utils/MainApi';
 export default function Movies() {
   const [isLoading, setLoadingStatus] = useState(false);
   const [error, setError] = useState('');
-  const [moviesList, setMoviesList] = useState({});
+  const [movies, setMoviesList] = useState([]);
   const [filter, changeFilter] = useState('')
 
   function getMovies() {
@@ -32,7 +32,7 @@ export default function Movies() {
   useEffect(() => {
     getMovies()
   }, [])
-  
+
 const handleChangeFilter = (event)=>{
 
 }
@@ -48,8 +48,8 @@ const handleChangeFilter = (event)=>{
       <Header isLogin={true} />
       <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} />
       {isLoading && <Preloader />}
-      {error.length && <span className='search-movies__error'>{error}</span>}
-      <MoviesCardList typeList='search-movies' />
+      {error && <span className='search-movies__error'>{error}</span>}
+      <MoviesCardList movies= {movies} typeList='search-movies' />
       <button className='movie__more-btn'>Ещё</button>
       <Footer />
     </section>

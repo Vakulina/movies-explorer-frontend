@@ -17,8 +17,12 @@
 }
 
 .card__image {
-  width: 100%;
   border-radius: 6px 6px 0 0;
+  object-fit: contain;
+  object-position: 0 0;
+  width: 100%;
+  height: 203px;
+
 }
 .card__name {
   font-size: 13px;
@@ -63,15 +67,22 @@
   background-repeat: no-repeat;
   background-position: center center;
   }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .card__two-columns {
     height: 31px;
     padding: 16px 14px 0px 14px;
   }
+  .card__image{
+  height: 190px;
+
+  }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
   .card {
     min-height: 237px;
+  }
+  .movies-card__image {
+    height: 168px;
   }
 
 } 
