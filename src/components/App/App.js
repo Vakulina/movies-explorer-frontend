@@ -20,6 +20,10 @@ function App() {
   const navigate = useNavigate();
   const [isError, setError] = useState('')
 
+  useEffect(()=>{
+    setError('');
+  },[navigate]);
+  
   useEffect(() => {
     mainApi.getInfoUser()
       .then((user) => {
