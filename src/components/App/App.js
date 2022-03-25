@@ -24,10 +24,10 @@ function App() {
     mainApi.getInfoUser()
       .then((user) => {
         if (user) {
-          
+
           setUser(user);
           toggleLogin(true);
-          }
+        }
       })
       .catch((err) => {
         toggleLogin(false);
@@ -41,11 +41,11 @@ function App() {
         mainApi.loginUser(newUser)
           .then(() => {
             toggleLogin(true)
-            setUser((actual)=>{
+            setUser((actual) => {
               return {
-              ...actual, user
-            }
-          })
+                ...actual, user
+              }
+            })
             setError('');
             navigate('/movies');
           })
@@ -57,32 +57,33 @@ function App() {
     mainApi.loginUser(user)
       .then((res) => {
         toggleLogin(true)
-        setUser((actual)=>{
+        setUser((actual) => {
           return {
-          ...actual, email: user.email
-        }
-      })
+            ...actual, email: user.email
+          }
+        })
         setError('');
         navigate('/movies')
-            })
-      .catch(err => {  
+      })
+      .catch(err => {
         setError(err.message)
       })
   }
   const handleChangeProfile = (user) => {
     mainApi.updateUserInfo(user)
-    .then(()=>{
-      setUser((actual) => {
-        return {
-          ...actual,
-          ...user
-        }
-      });
-      navigate('/movies')
-    })
-    .catch(err => {  
-      setError(err.message)
-    })
+      .then(() => {
+        setUser((actual) => {
+          return {
+            ...actual,
+            ...user
+          }
+        });
+        setError('');
+        navigate('/movies')
+      })
+      .catch(err => {
+        setError(err.message)
+      })
   }
 
   const handleOut = () => {
@@ -90,9 +91,10 @@ function App() {
       .then(() => {
         setUser({ name: '', email: '' });
         toggleLogin(false);
+        setError('');
         navigate('/')
       })
-      .catch(err => { 
+      .catch(err => {
         setError(err.message)
       })
   }
@@ -109,23 +111,23 @@ function App() {
             <Route path="/saved-movies" element={
               <ProtectedRoute component={SavedMovies} />
             } />
-          
+
             <Route path="/signup" element={
               <ProtectedRoutForReg
-              component={Register}
-              isError={isError}
-              onRegister={handleRegister}
+                component={Register}
+                isError={isError}
+                onRegister={handleRegister}
               />
             }
-             />
+            />
             <Route path="/signin" element={
               <ProtectedRoutForReg
-              isError={isError}
-              component={Login}
-              onLogin={handleLogin} 
+                isError={isError}
+                component={Login}
+                onLogin={handleLogin}
               />
             }
-             />
+            />
             <Route path="/profile" element={
               <ProtectedRoute
                 component={Profile}
