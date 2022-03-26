@@ -14,6 +14,7 @@ export default function Movies() {
   const [movies, setMoviesList] = useState([]);
   const [filter, changeFilter] = useState('')
 
+
   function getMovies() {
     setLoadingStatus(true)
     moviesApi.getMovies()
@@ -24,7 +25,7 @@ export default function Movies() {
         setMoviesList(res)
       })
       .catch((err) => {
-        localStorage.setItem('allMovies', {})
+        localStorage.setItem('allMovies', [])
         setError(err.message);
       })
       .finally(() => setLoadingStatus(false))
