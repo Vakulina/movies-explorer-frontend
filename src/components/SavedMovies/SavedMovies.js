@@ -1,11 +1,15 @@
+import { useState, useEffect } from 'react';
 import './SavedMovies.css';
 import Header from '../Header/Header';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
+import { mainApi } from '../../utils/MainApi';
 
 export default function SavedMovies({ isLoading }) {
+
+  
   return (
     <section className='saved-movie'>
       <Header isLogin={true} />

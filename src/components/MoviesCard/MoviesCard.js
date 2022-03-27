@@ -5,7 +5,7 @@ import { mainApi } from '../../utils/MainApi';
 import useSavedMoviesList from '../useSavedMoviesList/useSavedMoviesList';
 
 export default function MoviesCard({ card, typeList }) {
-const {saveMovie} =useSavedMoviesList(card)
+//const {saveMovie} =useSavedMoviesList(card)
 
   const [like, setLike] = useState(false);
   const hours = `${Math.floor(card.duration / 60)}ч`
@@ -36,7 +36,7 @@ if(!like){
     .then((res) => {
       console.log(res)
       setLike(!like)
-      saveMovie(res)
+    //  saveMovie(res)
       })
 
 }

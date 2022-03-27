@@ -20,7 +20,7 @@ export default function SearchForm({ typeList, onKeyPress, onClick }) {
         onClick= {onClick}/>
         <div className="search-form__line"></div>
       </div>
-      <FilterCheckbox />
+      
     </form>
   )
 }

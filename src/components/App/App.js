@@ -29,7 +29,6 @@ function App() {
     mainApi.getInfoUser()
       .then((user) => {
         if (user) {
-
           setUser(user);
           toggleLogin(true);
         }
