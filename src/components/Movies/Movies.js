@@ -95,21 +95,24 @@ export default function Movies() {
     //getSavedMovies();
   }, [movies, filter, isShort])
 
-  const handleChangeFilter = (event) => {
-
+  const handleChangeFilter = (arg) => {
+    
+console.log(arg)
   }
 
   const handleEnterPress = (event) => {
+  
     if (event.key === 'Enter') {
       handleChangeFilter(event)
     }
   }
 
-  const handleToggleIsShort = () =>{
+  const handleToggleIsShort = (event) =>{
+
     toggleShort(!isShort)
 
   }
-
+console.log("pererisovka")
   return (
     <section className='movie'>
       <Header isLogin={true} />
