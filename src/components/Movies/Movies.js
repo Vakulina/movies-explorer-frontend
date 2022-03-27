@@ -32,16 +32,17 @@ export default function Movies() {
   }
 
   function getInitialIsShort() {
-    let isShort
+    let isMovieShort
     if (localStorage.getItem('isShort') !== null) {
-      isShort = JSON.parse(localStorage.getItem('isShort'))
+      isMovieShort = JSON.parse(localStorage.getItem('isShort'))
+      return (isMovieShort === 'true')
     }
     else {
-      isShort = false
+      isMovieShort = false
     }
-    return isShort
+    console.log(isMovieShort)
+    return isMovieShort
   }
-
 
   function getMovies() {
     setLoadingStatus(true)
@@ -106,11 +107,16 @@ export default function Movies() {
     }
   }
 
+  const handleToggleIsShort = () =>{
+    toggleShort(!isShort)
+
+  }
+
   return (
     <section className='movie'>
       <Header isLogin={true} />
       <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} />
-      <FilterCheckbox />
+      <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort}/>
       {isLoading && <Preloader />}
       {error && <span className='search-movies__error'>{error}</span>}
       <MoviesCardList movies={filteredMovies} typeList='search-movies' />
