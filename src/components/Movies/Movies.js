@@ -34,13 +34,11 @@ export default function Movies() {
   function getInitialIsShort() {
     let isMovieShort
     if (localStorage.getItem('isShort') !== null) {
-      isMovieShort = JSON.parse(localStorage.getItem('isShort'))
-      return (isMovieShort === 'true')
-    }
+      isMovieShort = (localStorage.getItem('isShort') === 'true')
+      }
     else {
       isMovieShort = false
     }
-    console.log(isMovieShort)
     return isMovieShort
   }
 

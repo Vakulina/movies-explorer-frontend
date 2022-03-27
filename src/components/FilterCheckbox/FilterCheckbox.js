@@ -6,7 +6,8 @@ export default function FilterCheckbox({onChange, isChecked}) {
   const handleChange=(arg)=>{
     onChange();
     setChecked(arg);
-    localStorage.setItem('isShort', JSON.stringify(arg))
+    console.log(arg)
+    localStorage.setItem('isShort', arg)
   }
   return (
     <div className="filter-checkbox">
