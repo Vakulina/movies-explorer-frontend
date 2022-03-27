@@ -70,12 +70,13 @@ export default function Movies() {
 
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
-    console.log(movies, seachLine, isShort, )
+ 
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
       return filterString.toLowerCase().includes(seachLine.toLowerCase())
     })
+
       .filter(item => {
         if (!isShort) {
           return true
@@ -84,7 +85,7 @@ export default function Movies() {
           return (item.duration <= 40)
         }
       })
-    return result
+  return  seachLine.length ?  result : []
   }
 
   useEffect(() => {
