@@ -19,7 +19,9 @@ const [valueInput, setValue] = React.useState('')
         onChange={(e)=>setValue(e.target.value)}
         
         onKeyPress={(e)=>{
-          onKeyPress(e.target.value)
+          
+          console.log(e, e.target.value)
+          onKeyPress(e, e.target.value)
           }
           } />
         <button 
