@@ -4,7 +4,7 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 export default function SearchForm({ typeList, onKeyPress, onClick }) {
 const [valueInput, setValue] = React.useState('')
-console.log("fff", valueInput)
+
   return (
     <form className='search-form'>
       <div className='search-form__input-container'>
@@ -19,7 +19,7 @@ console.log("fff", valueInput)
         onChange={(e)=>setValue(e.target.value)}
         
         onKeyPress={(e)=>{
-          onKeyPress(e)
+          onKeyPress(e.target.value)
           }
           } />
         <button 
@@ -27,7 +27,7 @@ console.log("fff", valueInput)
         type='submit'
         onClick= {(e)=>{
           e.preventDefault() 
-          onClick()
+          onClick(valueInput)
         }
 
         }/>

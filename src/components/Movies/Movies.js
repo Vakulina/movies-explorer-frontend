@@ -72,7 +72,7 @@ export default function Movies() {
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
-      return filterString.includes(filter)
+      return filterString.toLowerCase().includes(filter.toLowerCase())
     })
       .filter(item => {
         if (!isShort) {
@@ -95,9 +95,9 @@ export default function Movies() {
     //getSavedMovies();
   }, [movies, filter, isShort])
 
-  const handleChangeFilter = (arg) => {
+  const handleChangeFilter = (filter) => {
     
-console.log(arg)
+    changeFilter(filter)
   }
 
   const handleEnterPress = (event) => {
