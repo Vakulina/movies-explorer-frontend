@@ -24,6 +24,7 @@ export default function Movies() {
     let filter
     if (localStorage.getItem('filter') !== null) {
       filter = JSON.parse(localStorage.getItem('filter'))
+
     }
     else {
       filter = ''
@@ -60,7 +61,7 @@ export default function Movies() {
 
   function getInitialMovies() {
     if ((localStorage.getItem('filter') !== null) && (localStorage.getItem('allMovies') !== null)) {
-      setMoviesList(JSON.parse(localStorage.getItem('movies')))
+      setMoviesList(JSON.parse(localStorage.getItem('allMovies')))
     }
     else {
       getMovies()
@@ -68,11 +69,12 @@ export default function Movies() {
   }
 
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
-  function filtering(movies, filter, isShort) {
+  function filtering(movies, seachLine, isShort) {
+    console.log(movies, seachLine, isShort, )
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
-      return filterString.toLowerCase().includes(filter.toLowerCase())
+      return filterString.toLowerCase().includes(seachLine.toLowerCase())
     })
       .filter(item => {
         if (!isShort) {
@@ -97,6 +99,7 @@ export default function Movies() {
 
   const handleChangeFilter = (filter) => {  
     changeFilter(filter)
+    localStorage.setItem('filter', JSON.stringify(filter))
   }
 
   const handleEnterPress = (event, filter) => { 
@@ -114,7 +117,7 @@ export default function Movies() {
   return (
     <section className='movie'>
       <Header isLogin={true} />
-      <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} />
+      <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter}/>
       <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort}/>
       {isLoading && <Preloader />}
       {error && <span className='search-movies__error'>{error}</span>}

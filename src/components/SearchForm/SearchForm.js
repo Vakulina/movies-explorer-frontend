@@ -2,8 +2,8 @@ import React from "react";
 import './SearchForm.css';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-export default function SearchForm({ typeList, onKeyPress, onClick }) {
-const [valueInput, setValue] = React.useState('')
+export default function SearchForm({ typeList, onKeyPress, onClick, filter }) {
+const [valueInput, setValue] = React.useState(filter)
 
   return (
     <form className='search-form'>
