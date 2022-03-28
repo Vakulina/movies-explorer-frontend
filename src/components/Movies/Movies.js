@@ -1,5 +1,5 @@
 import './Movies.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Header from '../Header/Header';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
@@ -7,8 +7,10 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { moviesApi } from '../../utils/MoviesApi';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 
-export default function Movies() {
+export default function Movies({handleGetSavedMovies}) {
+  const savedMovies = useContext(SavedMoviesContext);
   const [isLoading, setLoadingStatus] = useState(false);
   const [error, setError] = useState('');
   const [movies, setMoviesList] = useState([]);
@@ -65,6 +67,7 @@ export default function Movies() {
     else {
       getMovies()
     }
+    handleGetSavedMovies()
   }
 
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort

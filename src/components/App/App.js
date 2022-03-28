@@ -8,7 +8,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { SavedMoviesContext } from '../../contexts/SavedMoviesContext ';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import { IsLoginContext } from '../../contexts/IsLoginContext';
 import './App.css';
 import { mainApi } from '../../utils/MainApi';
@@ -20,13 +20,13 @@ function App() {
   const [isLogin, toggleLogin] = useState(true);  //if LocalStorage.filter === true то isLogin= true
   const navigate = useNavigate();
   const [isError, setError] = useState('')
-  const [message, setMessageAboutSucces]=useState('')
-  const [savedMovies, changeSavedMovies]=useState([])
+  const [message, setMessageAboutSucces] = useState('')
+  const [savedMovies, changeSavedMovies] = useState([])
 
-  useEffect(()=>{
+  useEffect(() => {
     setError('');
-  },[navigate]);
-  
+  }, [navigate]);
+
   useEffect(() => {
     mainApi.getInfoUser()
       .then((user) => {
@@ -39,6 +39,14 @@ function App() {
         toggleLogin(false);
       });
   }, [isLogin])
+
+  const handleGetSavedMovies = () => {
+    mainApi.getSavedMovies()
+      .then((res) => {
+        console.log(res)
+        changeSavedMovies(res)
+      })
+  }
 
   const handleRegister = (user) => {
     mainApi.postUser(user)
@@ -86,7 +94,7 @@ function App() {
           }
         });
         setMessageAboutSucces('Данные успешно изменены!')
-        
+
       })
       .catch(err => {
         setError(err.message)
@@ -110,45 +118,45 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <IsLoginContext.Provider value={isLogin}>
-        <SavedMoviesContext.Provider>
-        <div className="page">
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/movies" element={
-              <ProtectedRoute component={Movies} />
-            } />
-            <Route path="/saved-movies" element={
-              <ProtectedRoute component={SavedMovies} />
-            } />
+        <SavedMoviesContext.Provider value={savedMovies}>
+          <div className="page">
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/movies" element={
+                <ProtectedRoute component={Movies} handleGetSavedMovies={handleGetSavedMovies}/>
+              } />
+              <Route path="/saved-movies" element={
+                <ProtectedRoute component={SavedMovies} />
+              } />
 
-            <Route path="/signup" element={
-              <ProtectedRoutForReg
-                component={Register}
-                isError={isError}
-                onRegister={handleRegister}
+              <Route path="/signup" element={
+                <ProtectedRoutForReg
+                  component={Register}
+                  isError={isError}
+                  onRegister={handleRegister}
+                />
+              }
               />
-            }
-            />
-            <Route path="/signin" element={
-              <ProtectedRoutForReg
-                isError={isError}
-                component={Login}
-                onLogin={handleLogin}
+              <Route path="/signin" element={
+                <ProtectedRoutForReg
+                  isError={isError}
+                  component={Login}
+                  onLogin={handleLogin}
+                />
+              }
               />
-            }
-            />
-            <Route path="/profile" element={
-              <ProtectedRoute
-                component={Profile}
-                isError={isError}
-                onChange={handleChangeProfile}
-                onOut={handleOut}
-                message={message}
-              />
-            } />
-            <Route path='*' element={<NotFoundPage />} />
-          </Routes>
-        </div>
+              <Route path="/profile" element={
+                <ProtectedRoute
+                  component={Profile}
+                  isError={isError}
+                  onChange={handleChangeProfile}
+                  onOut={handleOut}
+                  message={message}
+                />
+              } />
+              <Route path='*' element={<NotFoundPage />} />
+            </Routes>
+          </div>
         </SavedMoviesContext.Provider>
       </IsLoginContext.Provider>
     </CurrentUserContext.Provider>
