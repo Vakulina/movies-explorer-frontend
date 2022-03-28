@@ -7,7 +7,9 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import { CurrentUserContext, SavedMoviesContext, IsLoginContext  } from '../../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext ';
+import { IsLoginContext } from '../../contexts/IsLoginContext';
 import './App.css';
 import { mainApi } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -19,6 +21,7 @@ function App() {
   const navigate = useNavigate();
   const [isError, setError] = useState('')
   const [message, setMessageAboutSucces]=useState('')
+  const [savedMovies, changeSavedMovies]=useState([])
 
   useEffect(()=>{
     setError('');
