@@ -7,8 +7,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { IsLoginContext } from '../../contexts/IsLoginContext';
+import { CurrentUserContext, SavedMoviesContext, IsLoginContext  } from '../../contexts/CurrentUserContext';
 import './App.css';
 import { mainApi } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -108,6 +107,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <IsLoginContext.Provider value={isLogin}>
+        <SavedMoviesContext.Provider>
         <div className="page">
           <Routes>
             <Route path="/" element={<Main />} />
@@ -146,6 +146,7 @@ function App() {
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </div>
+        </SavedMoviesContext.Provider>
       </IsLoginContext.Provider>
     </CurrentUserContext.Provider>
   );
