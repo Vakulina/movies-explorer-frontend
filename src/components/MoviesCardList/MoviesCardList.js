@@ -23,7 +23,7 @@ export default function MoviesCardList({ typeList, movies }) {
     addMovies(movies.slice(0, changeCountItems(width)))
     setIsEnd(movies.length <= shownMovies.length)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width])
+  }, [movies, width])
 
   const handleClick = () => {
     if (width > 768) {

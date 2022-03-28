@@ -7,7 +7,6 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { moviesApi } from '../../utils/MoviesApi';
-import { mainApi } from '../../utils/MainApi';
 
 export default function Movies() {
   const [isLoading, setLoadingStatus] = useState(false);
@@ -36,7 +35,7 @@ export default function Movies() {
     let isMovieShort
     if (localStorage.getItem('isShort') !== null) {
       isMovieShort = (localStorage.getItem('isShort') === 'true')
-      }
+    }
     else {
       isMovieShort = false
     }
@@ -70,7 +69,7 @@ export default function Movies() {
 
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
- 
+
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
@@ -85,7 +84,7 @@ export default function Movies() {
           return (item.duration <= 40)
         }
       })
-  return  seachLine.length ?  result : []
+    return seachLine.length ? result : []
   }
 
   useEffect(() => {
@@ -98,32 +97,32 @@ export default function Movies() {
     //getSavedMovies();
   }, [movies, filter, isShort])
 
-  const handleChangeFilter = (filter) => {  
+  const handleChangeFilter = (filter) => {
     changeFilter(filter)
     localStorage.setItem('filter', JSON.stringify(filter))
   }
 
-  const handleEnterPress = (event, filter) => { 
+  const handleEnterPress = (event, filter) => {
     if (event.key === 'Enter') {
-      event.preventDefault() 
-    
+      event.preventDefault()
+
       handleChangeFilter(filter)
     }
   }
 
-  const handleToggleIsShort = (event) =>{
+  const handleToggleIsShort = (event) => {
     toggleShort(!isShort)
   }
 
   return (
     <section className='movie'>
       <Header isLogin={true} />
-      <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter}/>
-      <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort}/>
+      <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter} />
+      <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
       {isLoading && <Preloader />}
       {error && <span className='search-movies__error'>{error}</span>}
       <MoviesCardList movies={filteredMovies} typeList='search-movies' />
-      
+
       <Footer />
     </section>
   );
