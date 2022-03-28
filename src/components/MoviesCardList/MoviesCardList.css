@@ -9,6 +9,21 @@
   justify-content: space-between;
   grid-gap: 36px 27px;
 }
+.listMovies__more-btn {
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+  max-width: 320px;
+  margin: 50px auto 80px auto;
+  cursor: pointer;
+  height: 36px;
+  background-color: #F9F9F9;
+  transition: 0.5s;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+}
 
 @media screen and (max-width: 800px) {
   .listMovies {
@@ -24,6 +39,11 @@
     grid-gap: 14px;
     justify-content: center;
     padding: 40px 10px 30px 10px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .listMovies__more-btn {
+    max-width: 240px;
   }
 }
 

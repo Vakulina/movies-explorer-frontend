@@ -123,7 +123,7 @@ export default function Movies() {
       {isLoading && <Preloader />}
       {error && <span className='search-movies__error'>{error}</span>}
       <MoviesCardList movies={filteredMovies} typeList='search-movies' />
-      <button className='movie__more-btn'>Ещё</button>
+      
       <Footer />
     </section>
   );
