@@ -1,9 +1,12 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import useResize from '../useResize/useResize';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext'
 
 export default function MoviesCardList({ typeList, movies }) {
+  const savedMovies = useContext(SavedMoviesContext);
+
   let width = useResize();
   const changeCountItems = (width) => {
     if (width > 768) {
@@ -19,6 +22,8 @@ export default function MoviesCardList({ typeList, movies }) {
   //const startShownMovies = movies.slice(0, changeCountItems(width))
   const [shownMovies, addMovies] = useState([])
   const [isEnd, setIsEnd] = useState(false)
+
+
   useEffect(() => {
     addMovies(movies.slice(0, changeCountItems(width)))
     setIsEnd(movies.length <= shownMovies.length)
@@ -36,11 +41,29 @@ export default function MoviesCardList({ typeList, movies }) {
     }
   }
 
+
   return (
     <>
       <section className='listMovies'>
+
+
+
+
+
         {shownMovies.map((item) => {
-          return <MoviesCard key={item.id} card={item} typeList={typeList} />
+
+          let isLike = savedMovies.some((savesMovie) => {
+
+            return savesMovie.movieId === item.id
+          })
+
+          let movieId=savedMovies.find(element => {
+            if (element.movieId === item.id){
+              return element._id
+            }
+          })?._id;
+
+          return <MoviesCard key={item.id} card={item} typeList={typeList} isLike={isLike} movieId={movieId} />
         })
         }
       </section>

@@ -49,6 +49,7 @@ export default function Movies({handleGetSavedMovies}) {
     moviesApi.getMovies()
       .then((res) => {
         setError('')
+       
         setLoadingStatus(false)
         localStorage.setItem('allMovies', JSON.stringify(res))
         setMoviesList(res)
@@ -70,9 +71,11 @@ export default function Movies({handleGetSavedMovies}) {
     handleGetSavedMovies()
   }
 
+
+
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
-
+    handleGetSavedMovies()
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
@@ -91,14 +94,17 @@ export default function Movies({handleGetSavedMovies}) {
   }
 
   useEffect(() => {
-    getInitialMovies();
-    //getSavedMovies();
+     getInitialMovies();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
+  //  getMovies();
     filterMoviesList(filtering(movies, filter, isShort))
-    //getSavedMovies();
-  }, [movies, filter, isShort])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movies,filter, isShort])
+
+  
 
   const handleChangeFilter = (filter) => {
     changeFilter(filter)

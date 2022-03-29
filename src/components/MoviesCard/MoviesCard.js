@@ -1,13 +1,15 @@
 import './MoviesCard.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import poster from '../../images/poster-1.jpg';
 import { mainApi } from '../../utils/MainApi';
 import useSavedMoviesList from '../useSavedMoviesList/useSavedMoviesList';
 
-export default function MoviesCard({ card, typeList }) {
-//const {saveMovie} =useSavedMoviesList(card)
+export default function MoviesCard({ card, typeList, isLike, movieId }) {
+
+  //const {saveMovie} =useSavedMoviesList(card)
 
   const [like, setLike] = useState(false);
+
   const hours = `${Math.floor(card.duration / 60)}ч`
   const minutes = `${card.duration % 60}м`
 
@@ -27,25 +29,25 @@ export default function MoviesCard({ card, typeList }) {
     nameRU: card.nameRU || 'не указано',
     nameEN: card.nameEN || 'не указано',
   }
-
-
+  
+  console.log(movieId)
+  useEffect(()=> { 
+    console.log(isLike)
+    setLike(isLike)},
+    [isLike])
   const clickLikeButton = (e) => {
     e.stopPropagation();
-if(!like){
-    mainApi.postNewMovie(currentMovie)
-    .then((res) => {
-      console.log(res)
-      setLike(!like)
-    //  saveMovie(res)
-      })
-
-}
-else{
-  mainApi.deleteMovie(currentMovie)
-  .then(() => setLike(!like))
-}
-
-
+    if (!like) {
+      mainApi.postNewMovie(currentMovie)
+        .then((res) => {
+          setLike(!like)
+          //  saveMovie(res)
+        })
+    }
+    else {
+      mainApi.deleteMovie(movieId)
+        .then(() => setLike(!like))
+    }
   }
 
   return (

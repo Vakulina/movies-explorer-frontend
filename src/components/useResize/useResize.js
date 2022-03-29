@@ -14,7 +14,6 @@ export default function useResize() {
       window.removeEventListener('resize', resizeListener);
     }
   }, [])
-  console.log("aaaaaaaaa")
   return windowWidth;
 }
 /*export default function useResize() {

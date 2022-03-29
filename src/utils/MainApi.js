@@ -92,7 +92,7 @@ class MainApi {
   }
 
   deleteMovie(id) {
-    const url = `${this._url}movies/_${id}`
+    const url = `${this._url}movies/${id}`
     return fetch(url, {
       method: "DELETE",
       credentials: 'include',
