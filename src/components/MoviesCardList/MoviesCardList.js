@@ -4,7 +4,7 @@ import useResize from '../useResize/useResize';
 import { useEffect, useState, useContext } from 'react'
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext'
 
-export default function MoviesCardList({ typeList, movies }) {
+export default function MoviesCardList({ typeList, movies, handleGetSavedMovies }) {
   const savedMovies = useContext(SavedMoviesContext);
 
   let width = useResize();
@@ -63,7 +63,7 @@ export default function MoviesCardList({ typeList, movies }) {
             }
           })?._id;
 
-          return <MoviesCard key={item.id} card={item} typeList={typeList} isLike={isLike} movieId={movieId} />
+          return <MoviesCard key={item.id} card={item} typeList={typeList} isLike={isLike} movieId={movieId} handleGetSavedMovies={handleGetSavedMovies} />
         })
         }
       </section>

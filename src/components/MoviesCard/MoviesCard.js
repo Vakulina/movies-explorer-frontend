@@ -4,7 +4,7 @@ import poster from '../../images/poster-1.jpg';
 import { mainApi } from '../../utils/MainApi';
 import useSavedMoviesList from '../useSavedMoviesList/useSavedMoviesList';
 
-export default function MoviesCard({ card, typeList, isLike, movieId }) {
+export default function MoviesCard({ card, typeList, isLike, movieId, handleGetSavedMovies }) {
 
   //const {saveMovie} =useSavedMoviesList(card)
 
@@ -29,24 +29,30 @@ export default function MoviesCard({ card, typeList, isLike, movieId }) {
     nameRU: card.nameRU || 'не указано',
     nameEN: card.nameEN || 'не указано',
   }
-  
-  console.log(movieId)
+
   useEffect(()=> { 
-    console.log(isLike)
-    setLike(isLike)},
-    [isLike])
+    setLike(isLike);
+  
+  },
+    
+    [ isLike])
+
+
   const clickLikeButton = (e) => {
     e.stopPropagation();
     if (!like) {
       mainApi.postNewMovie(currentMovie)
         .then((res) => {
           setLike(!like)
-          //  saveMovie(res)
+          handleGetSavedMovies();
         })
     }
     else {
       mainApi.deleteMovie(movieId)
-        .then(() => setLike(!like))
+        .then(() => {
+          setLike(!like);
+          handleGetSavedMovies();
+        })
     }
   }
 

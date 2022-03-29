@@ -130,7 +130,7 @@ export default function Movies({handleGetSavedMovies}) {
       <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
       {isLoading && <Preloader />}
       {error && <span className='search-movies__error'>{error}</span>}
-      <MoviesCardList movies={filteredMovies} typeList='search-movies' />
+      <MoviesCardList movies={filteredMovies} typeList='search-movies' handleGetSavedMovies={handleGetSavedMovies} />
 
       <Footer />
     </section>

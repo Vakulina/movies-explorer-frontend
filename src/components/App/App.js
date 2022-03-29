@@ -126,7 +126,7 @@ function App() {
                 <ProtectedRoute component={Movies} handleGetSavedMovies={handleGetSavedMovies}/>
               } />
               <Route path="/saved-movies" element={
-                <ProtectedRoute component={SavedMovies} />
+                <ProtectedRoute component={SavedMovies} handleGetSavedMovies={handleGetSavedMovies} />
               } />
 
               <Route path="/signup" element={
