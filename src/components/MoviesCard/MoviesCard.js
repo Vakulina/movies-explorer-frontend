@@ -4,6 +4,8 @@ import poster from '../../images/poster-1.jpg';
 import { mainApi } from '../../utils/MainApi';
 import useSavedMoviesList from '../useSavedMoviesList/useSavedMoviesList';
 
+const ERROR_LINK='https://yandex.ru/images/search?from=tabbar&text=%D0%BD%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE&pos=4&img_url=https%3A%2F%2Fsun9-26.userapi.com%2FRM0NmLETJfOJTstUhk3lz4dxlfiIuMqn1nKiWQ%2FpnLNw0Nbofo.jpg&rpt=simage'
+
 export default function MoviesCard({ card, typeList, isLike, movieId, handleGetSavedMovies }) {
 
   const [like, setLike] = useState(false);
@@ -19,12 +21,12 @@ export default function MoviesCard({ card, typeList, isLike, movieId, handleGetS
     duration: card.duration || 'не указано',
     year: card.year || 'не указано',
     description: description,
-    image: imageUrl,
-    trailerLink: card.trailerLink,
-    thumbnail: thumbnail,
+    image: imageUrl || ERROR_LINK,
+    trailerLink: card.trailerLink || ERROR_LINK,
+    thumbnail: thumbnail || ERROR_LINK,
     movieId: card.id,
     nameRU: card.nameRU || 'не указано',
-    nameEN: card.nameEN || 'не указано',
+    nameEN: card.nameEN || 'No Name',
   }
 
   useEffect(() => {
