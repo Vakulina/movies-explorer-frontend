@@ -19,10 +19,8 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies 
       return 5
     }
   }
-  //const startShownMovies = movies.slice(0, changeCountItems(width))
   const [shownMovies, addMovies] = useState([])
   const [isEnd, setIsEnd] = useState(false)
-
 
   useEffect(() => {
     addMovies(movies.slice(0, changeCountItems(width)))
@@ -40,34 +38,31 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies 
       setIsEnd(movies.length <= shownMovies.length + 2)
     }
   }
-
-
   return (
     <>
       <section className='listMovies'>
-
-
-
-
-
         {shownMovies.map((item) => {
-
           let isLike = savedMovies.some((savesMovie) => {
-
             return savesMovie.movieId === item.id
           })
-
-          let movieId=savedMovies.find(element => {
-            if (element.movieId === item.id){
+          let movieId = savedMovies.find(element => {
+            if (element.movieId === item.id) {
               return element._id
             }
           })?._id;
-
-          return <MoviesCard key={item.id} card={item} typeList={typeList} isLike={isLike} movieId={movieId} handleGetSavedMovies={handleGetSavedMovies} />
+          return <MoviesCard key={item.id}
+            card={item}
+            typeList={typeList}
+            isLike={isLike}
+            movieId={movieId}
+            handleGetSavedMovies={handleGetSavedMovies}
+          />
         })
         }
       </section>
-      {(typeList === 'search-movies') && !isEnd && <button className='listMovies__more-btn' onClick={() => handleClick()}>Ещё</button>}
+      {(typeList === 'search-movies') && !isEnd &&
+        <button className='listMovies__more-btn' onClick={() => handleClick()}>Ещё</button>
+      }
     </>
   )
 }

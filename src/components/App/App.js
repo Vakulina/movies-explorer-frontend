@@ -46,6 +46,9 @@ function App() {
         console.log(res)
         changeSavedMovies(res)
       })
+      .catch(()=>{
+        changeSavedMovies([])
+      })
   }
 
   const handleRegister = (user) => {
@@ -106,6 +109,8 @@ function App() {
     mainApi.unloginUser()
       .then(() => {
         setUser({ name: '', email: '' });
+        changeSavedMovies([])
+        localStorage.clear()
         toggleLogin(false);
         setError('');
         navigate('/')
