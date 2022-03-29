@@ -20,7 +20,6 @@ const [valueInput, setValue] = React.useState(filter)
         
         onKeyPress={(e)=>{
           
-          console.log(e, e.target.value)
           onKeyPress(e, e.target.value)
           }
           } />
@@ -29,6 +28,7 @@ const [valueInput, setValue] = React.useState(filter)
         type='submit'
         onClick= {(e)=>{
           e.preventDefault() 
+          console.log(valueInput)
           onClick(valueInput)
         }
 
