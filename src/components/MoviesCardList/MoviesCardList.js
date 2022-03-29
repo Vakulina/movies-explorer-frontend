@@ -50,7 +50,9 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies 
               return element._id
             }
           })?._id;
-          return <MoviesCard key={item.id}
+
+          return <MoviesCard
+            key={item.id||item._id}
             card={item}
             typeList={typeList}
             isLike={isLike}

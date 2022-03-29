@@ -5,7 +5,6 @@ import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
-import { mainApi } from '../../utils/MainApi';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
@@ -22,27 +21,23 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
   const handleEnterPress = (event, filter) => {
     if (event.key === 'Enter') {
       event.preventDefault()
-
-      handleChangeFilter(filter)
+      changeFilter(filter)
     }
   }
   const handleToggleIsShort = (event) => {
     toggleShort(!isShort)
   }
 
-
-   function sortShortMovies(movies, isShort){
-    return  movies.filter(item => {
-        if (!isShort) {
-          return true
-        }
-        else {
-          return (item.duration <= 40)
-        }
-      })
- 
+  function sortShortMovies(movies, isShort) {
+    return movies.filter(item => {
+      if (!isShort) {
+        return true
+      }
+      else {
+        return (item.duration <= 40)
+      }
+    })
   }
-
 
   function filtering(movies, seachLine, isShort) {
     handleGetSavedMovies()
@@ -51,7 +46,7 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
       result = sortShortMovies(savedMovies, isShort)
     }
     else {
-const sortFilterdMovies = movies.filter(item => {
+      const sortFilterdMovies = movies.filter(item => {
         const { country, director, year, description, nameRU, nameEN } = item;
         const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
         return filterString.toLowerCase().includes(seachLine.toLowerCase())
@@ -61,19 +56,22 @@ const sortFilterdMovies = movies.filter(item => {
     return result
   }
 
-    useEffect(() => {
-      //  getMovies();
-      filterMoviesList(filtering(savedMovies, filter, isShort))
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filter, isShort])
-    return (
-      <section className='saved-movie'>
-        <Header isLogin={true} />
-        {isLoading && <Preloader />}
-        <SearchForm typeList='saved-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter} />
-        <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
-        <MoviesCardList typeList='saved-movies' movies={filteredSavedMovies} handleGetSavedMovies={handleGetSavedMovies} />
-        <Footer />
-      </section>
-    );
-  }
+  useEffect(() => {
+    //  getMovies();
+    filterMoviesList(filtering(savedMovies, filter, isShort))
+    handleGetSavedMovies()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, isShort, SavedMoviesContext])
+
+
+  return (
+    <section className='saved-movie'>
+      <Header isLogin={true} />
+      {isLoading && <Preloader />}
+      <SearchForm typeList='saved-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter} />
+      <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
+      <MoviesCardList typeList='saved-movies' movies={filteredSavedMovies} handleGetSavedMovies={handleGetSavedMovies} />
+      <Footer />
+    </section>
+  );
+}

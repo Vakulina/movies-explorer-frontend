@@ -43,7 +43,6 @@ function App() {
   const handleGetSavedMovies = () => {
     mainApi.getSavedMovies()
       .then((res) => {
-        console.log(res)
         changeSavedMovies(res)
       })
       .catch(()=>{
