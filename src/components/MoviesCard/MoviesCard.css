@@ -31,6 +31,7 @@
   line-height: 16px;
   text-align: left;
   margin: 0;
+  max-width: calc(100% - 30px);
 }
 .card__duration {
   font-size: 11px;
@@ -54,6 +55,8 @@
 }
 .card__delete {
   display: none;
+  width: 30px;
+  height: 30px;
 }
 .card:hover .card__delete, .card:active .card__delete {
   display: block;
