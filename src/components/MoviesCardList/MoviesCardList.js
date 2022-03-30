@@ -44,14 +44,18 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies,
     <>
       <section className='listMovies'>
         {shownMovies.map((item) => {
-          let isLike = savedMovies.some((savesMovie) => {
-            return savesMovie.movieId === item.id
+
+          let isLike = savedMovies.some((savedMovie) => {
+            return savedMovie.movieId === item.id
           })
-          let movieId = savedMovies.find(element => {
+
+          const likesMovie= savedMovies.find((element) => {
             if (element.movieId === item.id) {
               return element._id
             }
-          })?._id;
+            else{return false}
+          })
+          const movieId = likesMovie?._id
 
           return <MoviesCard
             key={item.id||item._id}

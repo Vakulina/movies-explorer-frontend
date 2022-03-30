@@ -1,10 +1,9 @@
 import './MoviesCard.css';
 import { useEffect, useState } from 'react';
-import poster from '../../images/poster-1.jpg';
 import { mainApi } from '../../utils/MainApi';
-import useSavedMoviesList from '../useSavedMoviesList/useSavedMoviesList';
 
-const ERROR_LINK='https://yandex.ru/images/search?from=tabbar&text=%D0%BD%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE&pos=4&img_url=https%3A%2F%2Fsun9-26.userapi.com%2FRM0NmLETJfOJTstUhk3lz4dxlfiIuMqn1nKiWQ%2FpnLNw0Nbofo.jpg&rpt=simage'
+const ERROR_LINK = 'https://yandex.ru/images/search?from=tabbar&text=%D0%BD%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE&pos=4&img_url=https%3A%2F%2Fsun9-26.userapi.com%2FRM0NmLETJfOJTstUhk3lz4dxlfiIuMqn1nKiWQ%2FpnLNw0Nbofo.jpg&rpt=simage'
+const ERROR_STRING = 'не указано'
 
 export default function MoviesCard({ card, typeList, isLike, movieId, handleGetSavedMovies, handleDeleteSavedMovie }) {
 
@@ -14,26 +13,25 @@ export default function MoviesCard({ card, typeList, isLike, movieId, handleGetS
   const minutes = `${card.duration % 60}м`
   const imageUrl = (typeList === 'search-movies') ? `https://api.nomoreparties.co${card.image.url}` : card.image;
   const thumbnail = (typeList === 'search-movies') ? `https://api.nomoreparties.co${card.image.formats.thumbnail.url}` : card.thumbnail;
-  const description = (typeList === 'search-movies') ? card.description.slice(0, 300) || 'не указано' : card.description;
+  const description = (typeList === 'search-movies') ? card.description.slice(0, 300) || ERROR_STRING : card.description;
   const currentMovie = {
-    country: card.country || 'не указано',
-    director: card.director || 'не указано',
-    duration: card.duration || 'не указано',
-    year: card.year || 'не указано',
+    country: card.country || ERROR_STRING,
+    director: card.director || ERROR_STRING,
+    duration: card.duration || ERROR_STRING,
+    year: card.year || ERROR_STRING,
     description: description,
     image: imageUrl || ERROR_LINK,
     trailerLink: card.trailerLink || ERROR_LINK,
     thumbnail: thumbnail || ERROR_LINK,
     movieId: card.id,
-    nameRU: card.nameRU || 'не указано',
-    nameEN: card.nameEN || 'No Name',
+    nameRU: card.nameRU || ERROR_STRING,
+    nameEN: card.nameEN || ERROR_STRING,
   }
 
   useEffect(() => {
     setLike(isLike);
   },
     [isLike])
-
 
   const clickLikeButton = (e) => {
     e.stopPropagation();
@@ -43,7 +41,7 @@ export default function MoviesCard({ card, typeList, isLike, movieId, handleGetS
           setLike(!like)
           handleGetSavedMovies();
         })
-        .catch(err=>console.log(err))
+        .catch(err => console.log(err))
     }
     else {
       mainApi.deleteMovie(movieId)
@@ -51,17 +49,18 @@ export default function MoviesCard({ card, typeList, isLike, movieId, handleGetS
           setLike(!like);
           handleGetSavedMovies();
         })
-        .catch(err=>console.log(err))
+        .catch(err => console.log(err))
     }
   }
-  const clickOnDeleteButton = (e)=>{
+
+  const clickOnDeleteButton = (e) => {
     e.stopPropagation();
     mainApi.deleteMovie(card._id)
-    .then((res) => {
-      console.log(res)
-      handleDeleteSavedMovie(res);
-    })
-    .catch(err=>console.log(err))
+      .then((res) => {
+        console.log(res)
+        handleDeleteSavedMovie(res);
+      })
+      .catch(err => console.log(err))
   }
 
   return (
