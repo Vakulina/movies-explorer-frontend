@@ -1,0 +1,107 @@
+.burger__overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.3;
+  z-index: 2;
+}
+.burger__menu {
+  width: 100%;
+  max-width: 520px;
+  height: 100vh;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  z-index: 2;
+}
+.burger__nav {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+}
+.burger__btn {
+  width: 44px;
+  height: 44px;
+  margin-right: 12px;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.burger__icon {
+  object-position: center center;
+  width: 44px;
+  height: 44px;
+}
+.burger__btn_open {
+  margin-right: 18px;
+  margin-top: 18px;
+  margin-left: auto;
+}
+.burger__icon_open {
+  width: 32px;
+  height: 32px;
+}
+.burger__btn:focus {
+  outline: 3px solid rgb(255, 153, 0);
+  border-radius: 6px;
+}
+
+.burger__link {
+  text-decoration: none;
+  color: #000000;
+  transition: 0.5s;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  height: 50px;
+}
+.burger__item {
+  position: relative;
+}
+
+.burger__link:hover .burger__item:after, 
+.burger__link:focus .burger__item:after,
+.burger__link:active .burger__item:after {
+  content: ' ';
+  position: absolute;
+  top:25px; 
+  left: 0;
+  height: 2px;
+  width:  100%;
+  background-color: #000000;
+}
+.burger__link_account {
+  margin-bottom: 70px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+}
+.burger__account-img {
+  margin-left: 22px;
+  font-family: Inter;
+}
+@media (max-width: 400px){
+  .burger__btn {
+    margin-right: 0;
+  }
+  .burger__link {
+    height: 45px;
+  }
+  .burger__nav {
+    padding-top: 95px;
+  }
+  .burger__link_account {
+    margin-bottom: 48px;
+  }
+}
