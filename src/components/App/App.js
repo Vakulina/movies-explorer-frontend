@@ -78,7 +78,7 @@ const handleDeleteSavedMovie =(res)=>{
   const newArray=[...savedMovies]
   newArray.splice(index, 1)
   changeSavedMovies(newArray)
-
+  localStorage.setItem('savedMovies', JSON.stringify(newArray))
 }
 
   const handleRegister = (user) => {
