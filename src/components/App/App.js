@@ -17,7 +17,13 @@ import ProtectedRoutForReg from '../ProtectedRoutForReg/ProtectedRoutForReg'
 
 function App() {
   const [currentUser, setUser] = useState({ name: '', email: '' });
-  const [isLogin, toggleLogin] = useState(true);  //if LocalStorage.filter === true то isLogin= true
+  const [isLogin, toggleLogin] = useState(()=>{
+    if(localStorage.getItem('allMovies')){
+      return true}
+    else {
+      return false
+    }
+    });  //if LocalStorage.filter === true то isLogin= true
   const navigate = useNavigate();
   const [isError, setError] = useState('')
   const [message, setMessageAboutSucces] = useState('')
@@ -90,6 +96,7 @@ function App() {
         setError(err.message)
       })
   }
+
   const handleChangeProfile = (user) => {
     setError('');
     mainApi.updateUserInfo(user)
@@ -101,7 +108,6 @@ function App() {
           }
         });
         setMessageAboutSucces('Данные успешно изменены!')
-
       })
       .catch(err => {
         setError(err.message)
@@ -124,7 +130,7 @@ function App() {
       })
   }
 
-
+console.log(isLogin)
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

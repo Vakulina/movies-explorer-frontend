@@ -30,7 +30,7 @@ export default function Movies({ handleGetSavedMovies }) {
     return !Boolean(localStorage.getItem('isShort')) || false
   });
 
-  const [filteredMovies, filterMoviesList] = useState(movies);
+  const [filteredMovies, filterMoviesList] = useState([]);
 
   function getMovies() {
     setLoadingStatus(true)
@@ -69,7 +69,7 @@ export default function Movies({ handleGetSavedMovies }) {
       })
       
       if (result.length ===0){
-        setError('ничего не найдено');
+        setError('Ничего не найдено');
       }
     return seachLine.length ? result : []
   }
@@ -80,7 +80,7 @@ export default function Movies({ handleGetSavedMovies }) {
     filterMoviesList(filtering(movies, filter, isShort))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, isShort])
-console.log('dddd')
+
 
   const handleChangeFilter = (filter) => {
     changeFilter(filter)
@@ -98,6 +98,7 @@ console.log('dddd')
     toggleShort(!isShort)
   }
 
+console.log('MOVIES')
   return (
     <section className='movie'>
       <Header isLogin={true} />
