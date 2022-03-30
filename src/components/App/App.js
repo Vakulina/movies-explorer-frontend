@@ -17,17 +17,30 @@ import ProtectedRoutForReg from '../ProtectedRoutForReg/ProtectedRoutForReg'
 
 function App() {
   const [currentUser, setUser] = useState({ name: '', email: '' });
+  
   const [isLogin, toggleLogin] = useState(()=>{
     if(localStorage.getItem('allMovies')){
       return true}
     else {
       return false
     }
-    });  //if LocalStorage.filter === true то isLogin= true
+    });  
+    
   const navigate = useNavigate();
   const [isError, setError] = useState('')
   const [message, setMessageAboutSucces] = useState('')
-  const [savedMovies, changeSavedMovies] = useState([])
+
+
+  const [savedMovies, changeSavedMovies] = useState(() => {
+    if (localStorage.getItem('savedMovies') !== null) {
+      return JSON.parse(localStorage.getItem('savedMovies'))
+    }
+    else {
+      return []
+    }
+  }
+  );
+
   const [isLoading, setLoadingStatus] = useState(false);
 
 
@@ -53,7 +66,7 @@ function App() {
     mainApi.getSavedMovies()
       .then((res) => {
         changeSavedMovies(res)
-
+        localStorage.setItem('savedMovies', JSON.stringify(res))
       })
       .catch(() => {
         changeSavedMovies([])
@@ -130,7 +143,7 @@ function App() {
       })
   }
 
-console.log(isLogin)
+  console.log(savedMovies)
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -140,12 +153,13 @@ console.log(isLogin)
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/movies" element={
-                <ProtectedRoute component={Movies}
+               isLogin&& <ProtectedRoute component={Movies}
                   handleGetSavedMovies={handleGetSavedMovies}
                        />
               } />
               <Route path="/saved-movies" element={
-                <ProtectedRoute component={SavedMovies} handleGetSavedMovies={handleGetSavedMovies} isLoading={isLoading} />
+                 isLogin&&<ProtectedRoute component={SavedMovies} handleGetSavedMovies={handleGetSavedMovies}
+                  isLoading={isLoading} />
               } />
 
               <Route path="/signup" element={

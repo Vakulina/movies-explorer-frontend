@@ -1,5 +1,5 @@
 import './Movies.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Header from '../Header/Header';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
@@ -7,11 +7,12 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { moviesApi } from '../../utils/MoviesApi';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 
 export default function Movies({ handleGetSavedMovies }) {
   const [isLoading, setLoadingStatus] = useState(false);
   const [error, setError] = useState('');
-
+  
   const [movies, setMoviesList] = useState(() => {
     if (localStorage.getItem('allMovies') !== null) {
       return JSON.parse(localStorage.getItem('allMovies'))
@@ -49,7 +50,7 @@ export default function Movies({ handleGetSavedMovies }) {
 
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
-    handleGetSavedMovies()
+   // handleGetSavedMovies()
     if (filter.length === 0) {
       setError('Нужно ввести ключевое слово')
     }
@@ -67,10 +68,10 @@ export default function Movies({ handleGetSavedMovies }) {
           return (item.duration <= 40)
         }
       })
-      
-      if (result.length ===0){
-        setError('Ничего не найдено');
-      }
+
+    if (result.length === 0) {
+      setError('Ничего не найдено');
+    }
     return seachLine.length ? result : []
   }
 
@@ -98,14 +99,14 @@ export default function Movies({ handleGetSavedMovies }) {
     toggleShort(!isShort)
   }
 
-console.log('MOVIES')
+  console.log('MOVIES')
   return (
     <section className='movie'>
       <Header isLogin={true} />
       <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter} />
       <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
       {isLoading && <Preloader />}
-      {!isLoading&&error && <span className='search-movies__error'>{error}</span>}
+      {!isLoading && error && <span className='search-movies__error'>{error}</span>}
       <MoviesCardList movies={filteredMovies} typeList='search-movies' handleGetSavedMovies={handleGetSavedMovies} />
       <Footer />
     </section>
