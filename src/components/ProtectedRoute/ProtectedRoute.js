@@ -6,7 +6,7 @@ import { IsLoginContext } from '../../contexts/IsLoginContext'
 function ProtectedRoute({ component: Component, ...props }) {
   const isLogin = useContext(IsLoginContext);
   return (
-    isLogin ? <Component {...props} /> : <Navigate to="/signin" />
+    isLogin ? <Component {...props} /> : <Navigate to="/" />
   );
 };
 export default ProtectedRoute;
