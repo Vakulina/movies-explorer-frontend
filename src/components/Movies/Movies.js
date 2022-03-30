@@ -36,7 +36,7 @@ export default function Movies({ handleGetSavedMovies }) {
     setLoadingStatus(true)
     moviesApi.getMovies()
       .then((res) => {
-        setError('')
+        //setError('')
         localStorage.setItem('allMovies', JSON.stringify(res))
         setMoviesList(res)
       })
@@ -63,10 +63,15 @@ export default function Movies({ handleGetSavedMovies }) {
           return (item.duration <= 40)
         }
       })
+      
+      if (result.length ===0){
+        setError('ничего не найдено');
+      }
     return seachLine.length ? result : []
   }
 
   useEffect(() => {
+    setError("");
     getMovies();
     filterMoviesList(filtering(movies, filter, isShort))
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,7 +100,7 @@ export default function Movies({ handleGetSavedMovies }) {
       <SearchForm typeList='search-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter} />
       <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
       {isLoading && <Preloader />}
-      {error && <span className='search-movies__error'>{error}</span>}
+      {!isLoading&&error && <span className='search-movies__error'>{error}</span>}
       <MoviesCardList movies={filteredMovies} typeList='search-movies' handleGetSavedMovies={handleGetSavedMovies} />
       <Footer />
     </section>
