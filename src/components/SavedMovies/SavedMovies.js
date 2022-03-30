@@ -9,8 +9,20 @@ import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
+
   const savedMovies = useContext(SavedMoviesContext);
+
   const [filteredSavedMovies, filterMoviesList] = useState(savedMovies)
+
+ useEffect(()=>{
+  filterMoviesList([...filtering(savedMovies, filter, isShort)].reverse())
+ },[savedMovies])
+
+
+
+
+
+
 
   const [filter, changeFilter] = useState('')
 
@@ -42,7 +54,6 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
   }
 
   function filtering(movies, seachLine, isShort) {
-    handleGetSavedMovies()
     let result
     console.log(!seachLine.length)
     if (!seachLine.length) {
@@ -66,11 +77,6 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, isShort])
 
-  useEffect(() => {
-    handleGetSavedMovies()
-
- // eslint-disable-next-line react-hooks/exhaustive-deps
- }, [])
 
   return (
     <section className='saved-movie'>

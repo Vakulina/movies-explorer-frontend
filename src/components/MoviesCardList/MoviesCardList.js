@@ -6,7 +6,7 @@ import { SavedMoviesContext } from '../../contexts/SavedMoviesContext'
 
 export default function MoviesCardList({ typeList, movies, handleGetSavedMovies }) {
   const savedMovies = useContext(SavedMoviesContext);
-
+console.log(SavedMoviesContext)
   let width = useResize();
   const changeCountItems = (width) => {
     if (width > 768) {
@@ -22,10 +22,12 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies 
   const [shownMovies, addMovies] = useState([])
   const [isEnd, setIsEnd] = useState(false)
 
+
+
   useEffect(() => {
     addMovies(movies.slice(0, changeCountItems(width)))
     setIsEnd(movies.length <= shownMovies.length)
-    console.log("size")
+ 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movies, width])
 
