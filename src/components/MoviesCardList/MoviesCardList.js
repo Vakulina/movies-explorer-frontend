@@ -25,6 +25,7 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies 
   useEffect(() => {
     addMovies(movies.slice(0, changeCountItems(width)))
     setIsEnd(movies.length <= shownMovies.length)
+    console.log("size")
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movies, width])
 

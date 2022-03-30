@@ -56,7 +56,6 @@ export default function MoviesCard({ card, typeList, isLike, movieId, handleGetS
     e.stopPropagation();
     mainApi.deleteMovie(card._id)
     .then((res) => {
-      console.log('RES',res)
       handleGetSavedMovies();
     })
   }

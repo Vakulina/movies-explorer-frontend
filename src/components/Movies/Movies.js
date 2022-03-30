@@ -9,48 +9,47 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { moviesApi } from '../../utils/MoviesApi';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 
-export default function Movies({handleGetSavedMovies}) {
+export default function Movies({handleGetSavedMovies, initialMoviesList, initialFilter, initialIsShort}) {
   const savedMovies = useContext(SavedMoviesContext);
   const [isLoading, setLoadingStatus] = useState(false);
   const [error, setError] = useState('');
-  const [movies, setMoviesList] = useState([]);
+  const [movies, setMoviesList] = useState(initialMoviesList);
 
-  const [filter, changeFilter] = useState(getInitialFilter())
 
-  const [isShort, toggleShort] = useState(getInitialIsShort())
+  const [filter, changeFilter] = useState(initialFilter)
 
-  const [filteredMovies, filterMoviesList] = useState([])
+  const [isShort, toggleShort] = useState(initialIsShort)
 
-  function getInitialFilter() {
-    let filter
-    if (localStorage.getItem('filter') !== null) {
-      filter = JSON.parse(localStorage.getItem('filter'))
+  const [filteredMovies, filterMoviesList] = useState(initialMoviesList)
+  
+  //console.log("KUKU",initialMoviesList, initialFilter, initialIsShort)
 
-    }
-    else {
-      filter = ''
-    }
-    return filter
-  }
 
-  function getInitialIsShort() {
-    let isMovieShort
-    if (localStorage.getItem('isShort') !== null) {
-      isMovieShort = (localStorage.getItem('isShort') === 'true')
-    }
-    else {
-      isMovieShort = false
-    }
-    return isMovieShort
-  }
+
+  useEffect(()=>{
+    setMoviesList(initialMoviesList)
+
+    toggleShort(initialIsShort)
+
+    changeFilter(initialFilter)
+    filterMoviesList(filtering(initialMoviesList, initialFilter, initialIsShort))
+
+
+
+    console.log("Effect",filter,initialMoviesList, initialFilter, initialIsShort)
+},[initialMoviesList, initialFilter, initialIsShort])
+
+
+
+
+
+
 
   function getMovies() {
     setLoadingStatus(true)
     moviesApi.getMovies()
       .then((res) => {
-        setError('')
-       
-        setLoadingStatus(false)
+        setError('')  
         localStorage.setItem('allMovies', JSON.stringify(res))
         setMoviesList(res)
       })
@@ -61,18 +60,7 @@ export default function Movies({handleGetSavedMovies}) {
       .finally(() => setLoadingStatus(false))
   }
 
-  function getInitialMovies() {
-    if ((localStorage.getItem('filter') !== null) && (localStorage.getItem('allMovies') !== null)) {
-      setMoviesList(JSON.parse(localStorage.getItem('allMovies')))
-    }
-    else {
-      getMovies()
-    }
-    handleGetSavedMovies()
-  }
-
-
-
+console.log('movies')
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
     handleGetSavedMovies()
@@ -92,17 +80,19 @@ export default function Movies({handleGetSavedMovies}) {
       })
     return seachLine.length ? result : []
   }
-
+/*
   useEffect(() => {
      getInitialMovies();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [])*/
+
+
 
   useEffect(() => {
-  //  getMovies();
+    getMovies();
     filterMoviesList(filtering(movies, filter, isShort))
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [movies,filter, isShort])
+  }, [filter, isShort])
 
   
 

@@ -63,12 +63,17 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, isShort, SavedMoviesContext])
 
+  useEffect(() => {
+    handleGetSavedMovies()
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [isLoading])
 
   return (
     <section className='saved-movie'>
       <Header isLogin={true} />
-      {isLoading && <Preloader />}
+    
       <SearchForm typeList='saved-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter} />
+      {isLoading && <Preloader />}
       <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
       <MoviesCardList typeList='saved-movies' movies={filteredSavedMovies} handleGetSavedMovies={handleGetSavedMovies} />
       <Footer />
