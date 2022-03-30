@@ -24,14 +24,15 @@ class MainApi {
     }
   }
 
-
   getInfoUser(user) {
     const url = `${this._url}users/me`
     return fetch(url, {
       method: "GET",
       headers: this._headers,
       credentials: 'include',
-    }).then(this._checkRequest);
+    })
+      .then(this._checkRequest)
+      .catch((err) => console.log(err))
   }
   updateUserInfo({ name, email }) {
     const url = `${this._url}users/me`

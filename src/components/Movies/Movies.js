@@ -99,7 +99,6 @@ export default function Movies({ handleGetSavedMovies }) {
     toggleShort(!isShort)
   }
 
-  console.log('MOVIES')
   return (
     <section className='movie'>
       <Header isLogin={true} />
