@@ -11,7 +11,7 @@ import { moviesApi } from '../../utils/MoviesApi';
 export default function Movies({ handleGetSavedMovies }) {
   const [isLoading, setLoadingStatus] = useState(false);
   const [error, setError] = useState('');
-  
+
   const [movies, setMoviesList] = useState(() => {
     if (localStorage.getItem('allMovies') !== null) {
       return JSON.parse(localStorage.getItem('allMovies'));
@@ -36,7 +36,7 @@ export default function Movies({ handleGetSavedMovies }) {
     setLoadingStatus(true)
     moviesApi.getMovies()
       .then((res) => {
-       
+
         localStorage.setItem('allMovies', JSON.stringify(res))
         setMoviesList(res)
       })

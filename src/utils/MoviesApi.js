@@ -1,4 +1,4 @@
-import {DEFAULT_ERROR_MESSAGE} from './constants'
+import { DEFAULT_ERROR_MESSAGE } from './constants'
 const configConnection = {
   url: 'https://api.nomoreparties.co/beatfilm-movies',
   headers: {
@@ -28,8 +28,6 @@ class MoviesApi {
       headers: this._headers,
     }).then(this._checkRequest);
   }
-
-
 }
 
 const moviesApi = new MoviesApi(configConnection);

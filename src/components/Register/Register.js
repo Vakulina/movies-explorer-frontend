@@ -1,19 +1,17 @@
 import { Link } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../images/logo__header.svg';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Register.css';
 import React from 'react';
 import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
-import { DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
 
 export default function Register({ onRegister, isError }) {
-  const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
-  const [isChanged, setIsChanged]=useState(false);  //были ли изменения в инпутах
-  useEffect(()=>{
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  const [isChanged, setIsChanged] = useState(false);  //были ли изменения в инпутах
+  useEffect(() => {
     resetForm()
-  },[resetForm])
-  const handleChangeInput =(e)=>{
+  }, [resetForm])
+  const handleChangeInput = (e) => {
     handleChange(e);
     setIsChanged(true);
   }
@@ -35,13 +33,13 @@ export default function Register({ onRegister, isError }) {
               className='register__input'
               name='name'
               type="text"
-              minLength ='2'
-              maxLength = '30'
+              minLength='2'
+              maxLength='30'
               pattern='[A-Za-zа-яА-Я -]+'
               required
               id='register-name'
               onChange={handleChangeInput} />
-                {!isValid&&<span className='register__error'>{errors.name}</span>}
+            {!isValid && <span className='register__error'>{errors.name}</span>}
           </div>
           <div className='register__field'>
             <label
@@ -55,7 +53,7 @@ export default function Register({ onRegister, isError }) {
               pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
               id='register-email'
               required />
-                 {!isValid&&<span className='register__error'>{errors.email}</span>}
+            {!isValid && <span className='register__error'>{errors.email}</span>}
           </div>
           <div className='register__field'>
             <label className='register__label' htmlFor='password'>Пароль</label>
@@ -66,12 +64,12 @@ export default function Register({ onRegister, isError }) {
               name='password'
               minLength='8'
               required />
-                {!isValid&&<span className='register__error'>{errors.password}</span>}
+            {!isValid && <span className='register__error'>{errors.password}</span>}
           </div>
-          
+
         </div>
         <div className='register__buttons'>
-        <span className='register__error register__error_server'>{!isChanged ? isError:''}</span>
+          <span className='register__error register__error_server'>{!isChanged ? isError : ''}</span>
           <button
             className='register__button register__button_registration'
             disabled={!isValid}
@@ -79,7 +77,7 @@ export default function Register({ onRegister, isError }) {
               e.preventDefault();
               setIsChanged(false)
               onRegister(values);
-             }
+            }
             }>
             Зарегистрироваться
           </button>

@@ -1,9 +1,8 @@
 import './Login.css';
 import logo from '../../images/logo__header.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
-import { DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
 
 export default function Login({onLogin, isError}) {
  const {values, handleChange, errors, isValid, resetForm} = useFormWithValidation();
@@ -18,11 +17,9 @@ const handleChangeInput =(e)=>{
   setIsChanged(true);
 }
  const handleEnter = (e)=> {
-
   e.preventDefault();
   setIsChanged(false)
   onLogin(values)
-
  }
 
   return (

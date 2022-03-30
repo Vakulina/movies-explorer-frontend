@@ -16,27 +16,3 @@ export default function useResize() {
   }, [])
   return windowWidth;
 }
-/*export default function useResize() {
-  const [windowWidth, setWindowWidth] = useState(getWindth());
-
-
-      const newWindth = useMemo(()=>{
-        let timeoutId = null;
-
-        const resizeListener = () => {
-          clearTimeout(timeoutId);
-          timeoutId = setTimeout(() =>{ return getWindth()}, 150);
-        };
-        window.addEventListener('resize', resizeListener);
-        return () => {
-          window.removeEventListener('resize', resizeListener);
-        }
-      })
-    
-      useEffect(()=>{
-        setWindowWidth(newWindth)
-      },[newWindth, setWindowWidth])
-
-
-  return windowWidth;
-}*/

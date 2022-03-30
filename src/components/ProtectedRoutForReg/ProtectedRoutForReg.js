@@ -8,9 +8,9 @@ function ProtectedRoutForReg({ component: Component, ...props }) {
   React.useEffect(() => {
 
   }, [])
-  
+
   return (
-    isLogin ? <Navigate to="/profile" /> : <Component {...props} /> 
+    isLogin ? <Navigate to="/profile" /> : <Component {...props} />
   );
 };
 export default ProtectedRoutForReg;

@@ -26,7 +26,7 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies,
   useEffect(() => {
     addMovies(movies.slice(0, changeCountItems(width)))
     setIsEnd(movies.length <= shownMovies.length)
- 
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movies, width])
 
@@ -49,16 +49,16 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies,
             return savedMovie.movieId === item.id
           })
 
-          const likesMovie= savedMovies.find((element) => {
+          const likesMovie = savedMovies.find((element) => {
             if (element.movieId === item.id) {
               return element._id
             }
-            else{return false}
+            else { return false }
           })
           const movieId = likesMovie?._id
 
           return <MoviesCard
-            key={item.id||item._id}
+            key={item.id || item._id}
             card={item}
             typeList={typeList}
             isLike={isLike}
