@@ -6,7 +6,7 @@ import useSavedMoviesList from '../useSavedMoviesList/useSavedMoviesList';
 
 const ERROR_LINK='https://yandex.ru/images/search?from=tabbar&text=%D0%BD%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE&pos=4&img_url=https%3A%2F%2Fsun9-26.userapi.com%2FRM0NmLETJfOJTstUhk3lz4dxlfiIuMqn1nKiWQ%2FpnLNw0Nbofo.jpg&rpt=simage'
 
-export default function MoviesCard({ card, typeList, isLike, movieId, handleGetSavedMovies }) {
+export default function MoviesCard({ card, typeList, isLike, movieId, handleGetSavedMovies, handleDeleteSavedMovie }) {
 
   const [like, setLike] = useState(false);
 
@@ -43,6 +43,7 @@ export default function MoviesCard({ card, typeList, isLike, movieId, handleGetS
           setLike(!like)
           handleGetSavedMovies();
         })
+        .catch(err=>console.log(err))
     }
     else {
       mainApi.deleteMovie(movieId)
@@ -50,14 +51,17 @@ export default function MoviesCard({ card, typeList, isLike, movieId, handleGetS
           setLike(!like);
           handleGetSavedMovies();
         })
+        .catch(err=>console.log(err))
     }
   }
   const clickOnDeleteButton = (e)=>{
     e.stopPropagation();
     mainApi.deleteMovie(card._id)
     .then((res) => {
-      handleGetSavedMovies();
+      console.log(res)
+      handleDeleteSavedMovie(res);
     })
+    .catch(err=>console.log(err))
   }
 
   return (

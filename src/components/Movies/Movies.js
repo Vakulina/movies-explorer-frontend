@@ -15,10 +15,10 @@ export default function Movies({ handleGetSavedMovies }) {
   
   const [movies, setMoviesList] = useState(() => {
     if (localStorage.getItem('allMovies') !== null) {
-      return JSON.parse(localStorage.getItem('allMovies'))
+      return JSON.parse(localStorage.getItem('allMovies'));
     }
     else {
-      return []
+      return [];
     }
   }
   );
@@ -37,7 +37,7 @@ export default function Movies({ handleGetSavedMovies }) {
     setLoadingStatus(true)
     moviesApi.getMovies()
       .then((res) => {
-        //setError('')
+       
         localStorage.setItem('allMovies', JSON.stringify(res))
         setMoviesList(res)
       })
@@ -50,11 +50,9 @@ export default function Movies({ handleGetSavedMovies }) {
 
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
-   // handleGetSavedMovies()
     if (filter.length === 0) {
       setError('Нужно ввести ключевое слово')
     }
-
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
@@ -68,9 +66,9 @@ export default function Movies({ handleGetSavedMovies }) {
           return (item.duration <= 40)
         }
       })
-
     if (result.length === 0) {
       setError('Ничего не найдено');
+      console.log("sssssssss")
     }
     return seachLine.length ? result : []
   }
@@ -86,6 +84,9 @@ export default function Movies({ handleGetSavedMovies }) {
   const handleChangeFilter = (filter) => {
     changeFilter(filter)
     localStorage.setItem('filter', JSON.stringify(filter))
+    if (filter.length === 0) {
+      setError('Нужно ввести ключевое слово')
+    }
   }
 
   const handleEnterPress = (event, filter) => {

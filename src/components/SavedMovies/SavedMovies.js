@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
+export default function SavedMovies({ isLoading, handleGetSavedMovies, handleDeleteSavedMovie}) {
 
   const savedMovies = useContext(SavedMoviesContext);
 
@@ -19,7 +19,6 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
   filterMoviesList([...filtering(savedMovies, filter, isShort)].reverse())
  // eslint-disable-next-line react-hooks/exhaustive-deps
  },[savedMovies])
-
 
   const [filter, changeFilter] = useState('')
 
@@ -88,7 +87,10 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
       {isLoading && <Preloader />}
       <p className='saved-movies__message'>{message}</p>
 
-      <MoviesCardList typeList='saved-movies' movies={filteredSavedMovies} handleGetSavedMovies={handleGetSavedMovies} />
+      <MoviesCardList typeList='saved-movies'
+       movies={filteredSavedMovies}
+       handleGetSavedMovies={handleGetSavedMovies}
+       handleDeleteSavedMovie={handleDeleteSavedMovie} />
       <Footer />
     </section>
   );

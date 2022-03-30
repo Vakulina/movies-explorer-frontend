@@ -4,7 +4,7 @@ import useResize from '../useResize/useResize';
 import { useEffect, useState, useContext } from 'react'
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext'
 
-export default function MoviesCardList({ typeList, movies, handleGetSavedMovies }) {
+export default function MoviesCardList({ typeList, movies, handleGetSavedMovies, handleDeleteSavedMovie }) {
   const savedMovies = useContext(SavedMoviesContext);
   let width = useResize();
   const changeCountItems = (width) => {
@@ -60,6 +60,7 @@ export default function MoviesCardList({ typeList, movies, handleGetSavedMovies 
             isLike={isLike}
             movieId={movieId}
             handleGetSavedMovies={handleGetSavedMovies}
+            handleDeleteSavedMovie={handleDeleteSavedMovie}
           />
         })
         }

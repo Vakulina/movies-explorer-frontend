@@ -73,6 +73,13 @@ function App() {
       })
       .finally(() => setLoadingStatus(false))
   }
+const handleDeleteSavedMovie =(res)=>{
+  const index = savedMovies.findIndex(item=> item.movieId === res.message.movieId); 
+  const newArray=[...savedMovies]
+  newArray.splice(index, 1)
+  changeSavedMovies(newArray)
+
+}
 
   const handleRegister = (user) => {
     mainApi.postUser(user)
@@ -158,7 +165,7 @@ function App() {
               } />
               <Route path="/saved-movies" element={
                  isLogin&&<ProtectedRoute component={SavedMovies} handleGetSavedMovies={handleGetSavedMovies}
-                  isLoading={isLoading} />
+                  isLoading={isLoading} handleDeleteSavedMovie={handleDeleteSavedMovie}/>
               } />
 
               <Route path="/signup" element={
