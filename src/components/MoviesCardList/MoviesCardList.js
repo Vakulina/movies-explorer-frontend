@@ -1,6 +1,6 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import useResize from '../useResize/useResize';
+import useResize from '../../hooks/useResize/useResize';
 import { useEffect, useState, useContext } from 'react'
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext'
 

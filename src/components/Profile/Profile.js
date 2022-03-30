@@ -3,7 +3,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { IsLoginContext } from '../../contexts/IsLoginContext'
 import './Profile.css';
 import Header from '../Header/Header';
-import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation/useFormWithValidation';
 
 export default function Profile({ onOut, onChange, isError, message }) {
   const user = useContext(CurrentUserContext);

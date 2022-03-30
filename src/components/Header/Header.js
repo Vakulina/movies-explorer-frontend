@@ -3,7 +3,7 @@ import './Header.css';
 import logo from '../../images/logo__header.svg';
 import account_img from '../../images/account.svg';
 import BurgerNavigation from '../BurgerNavigation/BurgerNavigation';
-import useResize from '../useResize/useResize'
+import useResize from '../../hooks/useResize/useResize'
 
 export default function Header({ isLogin }) {
   let width = useResize();

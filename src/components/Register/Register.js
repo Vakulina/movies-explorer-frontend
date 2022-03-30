@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import logo from '../../images/logo__header.svg';
 import './Register.css';
 import React from 'react';
-import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation/useFormWithValidation';
 
 export default function Register({ onRegister, isError }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
