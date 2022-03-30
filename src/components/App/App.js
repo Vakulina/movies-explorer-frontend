@@ -23,10 +23,6 @@ function App() {
   const [message, setMessageAboutSucces] = useState('')
   const [savedMovies, changeSavedMovies] = useState([])
   const [isLoading, setLoadingStatus] = useState(false);
-  const [initialMoviesList, setInitialMoviesList] = useState([])
-  const [initialFilter, changeInitialFilter] = useState('')
-
-  const [initialIsShort, setInitialStatusShort] = useState(false)
 
 
   useEffect(() => {
@@ -128,19 +124,7 @@ function App() {
       })
   }
 
-  useEffect(() => {
-    console.log("SETTT")
-    if ((localStorage.getItem('filter') !== null) && (localStorage.getItem('allMovies') !== null)) {
-      setInitialMoviesList(JSON.parse(localStorage.getItem('allMovies')))
-    }
-    else {
-      setInitialMoviesList([])
-    }
-    changeInitialFilter(JSON.parse(localStorage.getItem('filter')) || '')
-    setInitialStatusShort(!Boolean(localStorage.getItem('isShort')), localStorage.getItem('filter'))
-    handleGetSavedMovies()
 
-  }, [])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -152,10 +136,7 @@ function App() {
               <Route path="/movies" element={
                 <ProtectedRoute component={Movies}
                   handleGetSavedMovies={handleGetSavedMovies}
-                  initialMoviesList={initialMoviesList}
-                  initialFilter={initialFilter}
-                  initialIsShort={initialIsShort}
-                />
+                       />
               } />
               <Route path="/saved-movies" element={
                 <ProtectedRoute component={SavedMovies} handleGetSavedMovies={handleGetSavedMovies} isLoading={isLoading} />

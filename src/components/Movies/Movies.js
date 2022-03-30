@@ -1,5 +1,5 @@
 import './Movies.css';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
@@ -7,60 +7,46 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { moviesApi } from '../../utils/MoviesApi';
-import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 
-export default function Movies({handleGetSavedMovies, initialMoviesList, initialFilter, initialIsShort}) {
-  const savedMovies = useContext(SavedMoviesContext);
+export default function Movies({ handleGetSavedMovies }) {
   const [isLoading, setLoadingStatus] = useState(false);
   const [error, setError] = useState('');
-  const [movies, setMoviesList] = useState(initialMoviesList);
 
+  const [movies, setMoviesList] = useState(() => {
+    if (localStorage.getItem('allMovies') !== null) {
+      return JSON.parse(localStorage.getItem('allMovies'))
+    }
+    else {
+      return []
+    }
+  }
+  );
 
-  const [filter, changeFilter] = useState(initialFilter)
+  const [filter, changeFilter] = useState(() => {
+    return JSON.parse(localStorage.getItem('filter')) || ''
+  });
 
-  const [isShort, toggleShort] = useState(initialIsShort)
+  const [isShort, toggleShort] = useState(() => {
+    return !Boolean(localStorage.getItem('isShort')) || false
+  });
 
-  const [filteredMovies, filterMoviesList] = useState(initialMoviesList)
-  
-  //console.log("KUKU",initialMoviesList, initialFilter, initialIsShort)
-
-
-
-  useEffect(()=>{
-    setMoviesList(initialMoviesList)
-
-    toggleShort(initialIsShort)
-
-    changeFilter(initialFilter)
-    filterMoviesList(filtering(initialMoviesList, initialFilter, initialIsShort))
-
-
-
-    console.log("Effect",filter,initialMoviesList, initialFilter, initialIsShort)
-},[initialMoviesList, initialFilter, initialIsShort])
-
-
-
-
-
-
+  const [filteredMovies, filterMoviesList] = useState(movies);
 
   function getMovies() {
     setLoadingStatus(true)
     moviesApi.getMovies()
       .then((res) => {
-        setError('')  
+        setError('')
         localStorage.setItem('allMovies', JSON.stringify(res))
         setMoviesList(res)
       })
       .catch((err) => {
-        localStorage.setItem('allMovies', [])
+        localStorage.clear()
         setError(err.message);
       })
       .finally(() => setLoadingStatus(false))
   }
 
-console.log('movies')
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
     handleGetSavedMovies()
@@ -69,7 +55,6 @@ console.log('movies')
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
       return filterString.toLowerCase().includes(seachLine.toLowerCase())
     })
-
       .filter(item => {
         if (!isShort) {
           return true
@@ -80,21 +65,13 @@ console.log('movies')
       })
     return seachLine.length ? result : []
   }
-/*
-  useEffect(() => {
-     getInitialMovies();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])*/
-
-
 
   useEffect(() => {
     getMovies();
     filterMoviesList(filtering(movies, filter, isShort))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, isShort])
 
-  
 
   const handleChangeFilter = (filter) => {
     changeFilter(filter)
@@ -104,7 +81,6 @@ console.log('movies')
   const handleEnterPress = (event, filter) => {
     if (event.key === 'Enter') {
       event.preventDefault()
-
       handleChangeFilter(filter)
     }
   }
@@ -121,7 +97,6 @@ console.log('movies')
       {isLoading && <Preloader />}
       {error && <span className='search-movies__error'>{error}</span>}
       <MoviesCardList movies={filteredMovies} typeList='search-movies' handleGetSavedMovies={handleGetSavedMovies} />
-
       <Footer />
     </section>
   );
