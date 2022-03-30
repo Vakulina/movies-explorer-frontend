@@ -67,7 +67,6 @@ export default function Movies({ handleGetSavedMovies }) {
       })
     if (result.length === 0) {
       setError('Ничего не найдено');
-      console.log("sssssssss")
     }
     return seachLine.length ? result : []
   }
