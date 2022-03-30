@@ -12,16 +12,14 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
 
   const savedMovies = useContext(SavedMoviesContext);
 
-  const [filteredSavedMovies, filterMoviesList] = useState(savedMovies)
+  const [filteredSavedMovies, filterMoviesList] = useState(savedMovies);
+  const [message, setMessage]=useState('')
 
  useEffect(()=>{
   filterMoviesList([...filtering(savedMovies, filter, isShort)].reverse())
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+
  },[savedMovies])
-
-
-
-
-
 
 
   const [filter, changeFilter] = useState('')
@@ -55,7 +53,6 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
 
   function filtering(movies, seachLine, isShort) {
     let result
-    console.log(!seachLine.length)
     if (!seachLine.length) {
       result = sortShortMovies(savedMovies, isShort)
     }
@@ -73,18 +70,26 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies }) {
   useEffect(() => {
     handleGetSavedMovies()
     filterMoviesList([...filtering(savedMovies, filter, isShort)].reverse())
- 
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, isShort])
 
+  useEffect(()=>{
+    if (filteredSavedMovies.length===0){setMessage('Ничего не найдено')}
+    else{setMessage('')}
+    console.log(message, filteredSavedMovies)
+  },[filteredSavedMovies, message])
 
   return (
     <section className='saved-movie'>
       <Header isLogin={true} />
     
       <SearchForm typeList='saved-movies' onKeyPress={handleEnterPress} onClick={handleChangeFilter} filter={filter} />
-      {isLoading && <Preloader />}
       <FilterCheckbox onChange={handleToggleIsShort} isChecked={isShort} />
+      {isLoading && <Preloader />}
+      <p className='saved-movies__message'>{message}</p>
+
       <MoviesCardList typeList='saved-movies' movies={filteredSavedMovies} handleGetSavedMovies={handleGetSavedMovies} />
       <Footer />
     </section>

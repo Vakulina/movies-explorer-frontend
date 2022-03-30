@@ -6,7 +6,6 @@ import { SavedMoviesContext } from '../../contexts/SavedMoviesContext'
 
 export default function MoviesCardList({ typeList, movies, handleGetSavedMovies }) {
   const savedMovies = useContext(SavedMoviesContext);
-console.log(SavedMoviesContext)
   let width = useResize();
   const changeCountItems = (width) => {
     if (width > 768) {
