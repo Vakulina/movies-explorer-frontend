@@ -50,6 +50,10 @@ export default function Movies({ handleGetSavedMovies }) {
   //filtering находит массив фильмов, удовлетворяющий строке поиска и параметру isShort
   function filtering(movies, seachLine, isShort) {
     handleGetSavedMovies()
+    if (filter.length === 0) {
+      setError('Нужно ввести ключевое слово')
+    }
+
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
@@ -76,7 +80,7 @@ export default function Movies({ handleGetSavedMovies }) {
     filterMoviesList(filtering(movies, filter, isShort))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, isShort])
-
+console.log('dddd')
 
   const handleChangeFilter = (filter) => {
     changeFilter(filter)
