@@ -29,7 +29,10 @@ export default function useFormWithValidation() {
     setChangedStatus(setStatusIsChangingForm(user, {...user, ...values, [name]: value}))
   };
 
-
+  const handleSetFalseChangedStatus = () =>{
+    setChangedStatus(false)
+  }
+  
 
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
@@ -40,5 +43,5 @@ export default function useFormWithValidation() {
     [setValues, setErrors, setIsValid]
   );
 
-  return { values, isChanges, handleChange, errors, isValid, resetForm };
+  return { values, isChanges, handleChange, errors, isValid, resetForm, handleSetFalseChangedStatus };
 }

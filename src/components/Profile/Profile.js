@@ -5,11 +5,11 @@ import './Profile.css';
 import Header from '../Header/Header';
 import useFormWithValidation from '../../hooks/useFormWithValidation/useFormWithValidation';
 
-export default function Profile({ onOut, onChange, isError, message, handleClearMessage  }) {
-  const { values, handleChange, errors, isValid, resetForm, isChanges } = useFormWithValidation();
+export default function Profile({ onOut, onChange, isError, message, handleClearMessage,  }) {
+  const { values, handleChange, errors, isValid, resetForm, isChanges, handleSetFalseChangedStatus  } = useFormWithValidation();
   const user = useContext(CurrentUserContext);
   const isLogin = useContext(IsLoginContext);
-  
+  console.log(isChanges)
   
   useEffect(() => {
     resetForm()
@@ -18,6 +18,8 @@ export default function Profile({ onOut, onChange, isError, message, handleClear
   const onHadleClickChange = (e) => {
     e.preventDefault();
     onChange({ ...user, ...values });
+    handleSetFalseChangedStatus();
+    console.log(isChanges)
   }
 
   const handleChangeInput = (e) => {
@@ -59,7 +61,6 @@ export default function Profile({ onOut, onChange, isError, message, handleClear
 
             </div>
             {!isValid && <span className='profile__error'>{errors.email}</span>}
-
 
           </div>
           <div className='profile__buttons'>
