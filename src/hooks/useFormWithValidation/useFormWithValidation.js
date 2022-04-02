@@ -25,13 +25,8 @@ export default function useFormWithValidation() {
 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: message });
-   // console.log( user, {...user, ...values, [name]: value})
-
     setIsValid(target.closest("form").checkValidity());
-
-//console.log(setStatusIsChangingForm(user, {...user, ...values, [name]: value}))
     setChangedStatus(setStatusIsChangingForm(user, {...user, ...values, [name]: value}))
-  //console.log(isChanges)
   };
 
 

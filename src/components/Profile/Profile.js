@@ -25,7 +25,6 @@ export default function Profile({ onOut, onChange, isError, message, handleClear
     handleChange(e);
   }
 
-
   return (
     <>
       <Header isLogin={isLogin} />
