@@ -17,9 +17,8 @@ export default function Profile({ onOut, onChange, isError, message, handleClear
 
   const onHadleClickChange = (e) => {
     e.preventDefault();
-    onChange({ ...user, ...values });
     handleSetFalseChangedStatus();
-    console.log(isChanges)
+    onChange({ ...user, ...values });
   }
 
   const handleChangeInput = (e) => {
