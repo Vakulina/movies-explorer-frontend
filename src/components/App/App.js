@@ -116,9 +116,13 @@ const handleDeleteSavedMovie =(res)=>{
         setError(err.message)
       })
   }
+  const handleClearMessage=()=>{
+    setMessageAboutSucces('')
+  }
 
   const handleChangeProfile = (user) => {
     setError('');
+    setMessageAboutSucces('')
     mainApi.updateUserInfo(user)
       .then(() => {
         setUser((actual) => {
@@ -190,6 +194,7 @@ const handleDeleteSavedMovie =(res)=>{
                   isError={isError}
                   onChange={handleChangeProfile}
                   onOut={handleOut}
+                  handleClearMessage={handleClearMessage}
                   message={message}
                 />
               } />

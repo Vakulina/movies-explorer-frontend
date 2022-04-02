@@ -1,10 +1,14 @@
 import React from "react";
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import setStatusIsChangingForm from '../../utils/setStatusIsChangingForm'
 
 export default function useFormWithValidation() {
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
+  const [isChanges, setChangedStatus] = React.useState(false)
+  const user = useContext(CurrentUserContext);
 
 
   const handleChange = (event) => {
@@ -21,8 +25,16 @@ export default function useFormWithValidation() {
 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: message });
+   // console.log( user, {...user, ...values, [name]: value})
+
     setIsValid(target.closest("form").checkValidity());
+
+//console.log(setStatusIsChangingForm(user, {...user, ...values, [name]: value}))
+    setChangedStatus(setStatusIsChangingForm(user, {...user, ...values, [name]: value}))
+  //console.log(isChanges)
   };
+
+
 
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
@@ -33,5 +45,5 @@ export default function useFormWithValidation() {
     [setValues, setErrors, setIsValid]
   );
 
-  return { values, handleChange, errors, isValid, resetForm };
+  return { values, isChanges, handleChange, errors, isValid, resetForm };
 }

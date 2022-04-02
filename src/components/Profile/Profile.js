@@ -1,30 +1,30 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { IsLoginContext } from '../../contexts/IsLoginContext'
 import './Profile.css';
 import Header from '../Header/Header';
 import useFormWithValidation from '../../hooks/useFormWithValidation/useFormWithValidation';
 
-export default function Profile({ onOut, onChange, isError, message }) {
+export default function Profile({ onOut, onChange, isError, message, handleClearMessage  }) {
+  const { values, handleChange, errors, isValid, resetForm, isChanges } = useFormWithValidation();
   const user = useContext(CurrentUserContext);
   const isLogin = useContext(IsLoginContext);
-  const [isChanged, setIsChanged] = useState(false);  //были ли изменения в инпутах
-
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  
+  
   useEffect(() => {
     resetForm()
   }, [resetForm])
 
   const onHadleClickChange = (e) => {
-
     e.preventDefault();
-    setIsChanged(false)
     onChange({ ...user, ...values });
   }
+
   const handleChangeInput = (e) => {
+    handleClearMessage('');
     handleChange(e);
-    setIsChanged(true);
   }
+
 
   return (
     <>
@@ -64,9 +64,9 @@ export default function Profile({ onOut, onChange, isError, message }) {
 
           </div>
           <div className='profile__buttons'>
-            <span className='profile__error profile__error_server'>{!isChanged ? isError : ''}</span>
-            <span className='profile__message'>{!isChanged ? message : ''}</span>
-            <button className='profile__button' onClick={onHadleClickChange} disabled={!isChanged || !isValid}>Редактировать</button>
+            <span className='profile__error profile__error_server'>{isError}</span>
+            <span className='profile__message'>{message}</span>
+            <button className='profile__button' onClick={onHadleClickChange} disabled={!!!isChanges || !isValid}>Редактировать</button>
             <button className='profile__button profile__button_exit' onClick={(e) => {
               e.preventDefault()
               onOut()
