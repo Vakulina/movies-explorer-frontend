@@ -9,7 +9,6 @@ export default function Profile({ onOut, onChange, isError, message, handleClear
   const { values, handleChange, errors, isValid, resetForm, isChanges, handleSetFalseChangedStatus  } = useFormWithValidation();
   const user = useContext(CurrentUserContext);
   const isLogin = useContext(IsLoginContext);
-  console.log(isChanges)
   
   useEffect(() => {
     resetForm()
