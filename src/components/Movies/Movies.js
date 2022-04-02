@@ -27,7 +27,7 @@ export default function Movies({ handleGetSavedMovies }) {
   });
 
   const [isShort, toggleShort] = useState(() => {
-    return !Boolean(localStorage.getItem('isShort')) || false
+     return localStorage.getItem('isShort')==='true'
   });
 
   const [filteredMovies, filterMoviesList] = useState([]);
