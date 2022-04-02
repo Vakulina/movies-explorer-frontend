@@ -16,6 +16,7 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies, handleDel
 
   useEffect(() => {
     filterMoviesList([...filtering(savedMovies, filter, isShort)].reverse())
+  
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [savedMovies])
 
@@ -73,8 +74,12 @@ export default function SavedMovies({ isLoading, handleGetSavedMovies, handleDel
   }, [filter, isShort])
 
   useEffect(() => {
-    if (filteredSavedMovies.length === 0) { setMessage('Ничего не найдено') }
+    if (savedMovies.length === 0) { setMessage('Нет сохраненных фильмов') }
+    else if (filteredSavedMovies.length === 0) { setMessage('Ничего не найдено') }
+
+  
     else { setMessage('') }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredSavedMovies, message])
 
   return (
