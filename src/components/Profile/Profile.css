@@ -25,6 +25,8 @@
 }
 .profile__fields {
   margin-bottom: 215px;
+  display: flex;
+  flex-direction: column;
 }
 .profile__label {
   font-size: 11px;
@@ -44,6 +46,26 @@
   width: 100%;
   text-align: right;
 }
+.profile__error{
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 10px;
+  color: #EE3465;
+   padding-top: 5px;
+}
+.profile__error_server {
+  position: absolute;
+  top: -60px;
+  left: 0;
+}
+.profile__message {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  color: #2BE080;
+  
+
+}
 .profile__input:active, .profile__input:focus {
   outline: 3px solid rgb(255, 153, 0);
   border-radius: 3px;
@@ -59,6 +81,7 @@
 .profile__buttons {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .profile__line {
   height: 1px;
@@ -84,6 +107,9 @@
 }
 .profile__button_exit {
   color: #EE3465;
+}
+.profile__button:disabled:hover {
+  color: rgba(16, 16, 16, .3)
 }
 .profile__button:hover {
   color: #2BE080;

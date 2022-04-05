@@ -47,10 +47,14 @@
 }
 
 .about-me__paragraf {
+  text-indent: 20px;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
   margin: 0;
+  margin-bottom: 10px;
+}
+.about-me__paragraf:last-of-type {
   margin-bottom: 99px;
 }
 .about-me__links-list {
@@ -80,6 +84,8 @@
 .about-me__foto {
   width: 270px;
   height: 327px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 @media (max-width: 800px){
   .about-me {
@@ -110,6 +116,8 @@
   .about-me__foto {
     height: 307px;
     width: 255px;
+    object-fit: cover;
+    border-radius: 10px;
   }
   .about-me__two-columns {
     margin-bottom: 90px;

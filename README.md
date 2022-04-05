@@ -16,3 +16,4 @@
 #### :link: Домен сервера (фронтенд) - https://movies-project.nomoredomains.work/
 #### :link: Домен сервера (бэкенд) - https://api.movies-project.nomoredomains.work/
 #### :link: GitHub репозиторий (бэкенд) - https://github.com/Vakulina/movies-explorer-api
+
