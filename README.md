@@ -1,6 +1,19 @@
+## Фронтенд дипломного проекта Яндекс.Практикум *MOVIES*
 
-Убрала тень в input::placeholder на странице Сохраненных фильмов (/saved-movies), на странице Фильмов (/movies) тень осталась в соответсвии с макетом.
+### Сервис по поиску и сохранению понравившихся фильмов с регистрацией и авторизацией (простой аналог "Кинопоиска")
 
-https://movies-project.nomoredomains.work/
-Архив с макетом https://disk.yandex.ru/d/6NfYbLOSKh7fbA
+### Используемые технологии:
+1. HTML5
+2. CSS3
+3. JavaScript (ES6)
+4. React (Create Reacte App)
+5. React-hooks
+6. Rect-context
+7. БЭМ
+
+  
+#### :link: Архив с макетом https://disk.yandex.ru/d/6NfYbLOSKh7fbA 
+#### :link: Домен сервера (фронтенд) - https://movies-project.nomoredomains.work/
+#### :link: Домен сервера (бэкенд) - https://api.movies-project.nomoredomains.work/
+#### :link: GitHub репозиторий (бэкенд) - https://github.com/Vakulina/movies-explorer-api
 
