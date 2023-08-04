@@ -13,7 +13,7 @@
 
   
 #### :link: Архив с макетом https://disk.yandex.ru/d/6NfYbLOSKh7fbA 
-#### :link: Домен сервера (фронтенд) - https://movies-project.nomoredomains.work/
-#### :link: Домен сервера (бэкенд) - http://759c6cd12fb9.vps.myjino.ru/
+#### :link: Деплой фронтенда - https://movies-onkf.onrender.com/
+#### :link: Домен сервера (бэкенд) - https://759c6cd12fb9.vps.myjino.ru/
 #### :link: GitHub репозиторий (бэкенд) - https://github.com/Vakulina/movies-explorer-api
 
