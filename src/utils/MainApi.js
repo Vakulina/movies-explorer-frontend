@@ -1,6 +1,6 @@
 import { DEFAULT_ERROR_MESSAGE } from './constants';
 const configConnection = {
-  url: 'https://759c6cd12fb9.vps.myjino.ru/',
+  url: 'http://759c6cd12fb9.vps.myjino.ru/',
   headers: {
     'Content-Type': 'application/json'
   }
