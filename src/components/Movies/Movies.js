@@ -10,34 +10,26 @@ import { moviesApi } from '../../utils/MoviesApi';
 
 export default function Movies({ handleGetSavedMovies }) {
   const [isLoading, setLoadingStatus] = useState(false);
-  const [error, setError] = useState('');
-
-  const [movies, setMoviesList] = useState(() => {
-    if (localStorage.getItem('allMovies') !== null) {
-      return JSON.parse(localStorage.getItem('allMovies'));
-    }
-    else {
-      return [];
-    }
-  }
-  );
-
+  const [error, setError] = useState('')
+  const [movies, setMoviesList] = useState([]);
   const [filter, changeFilter] = useState(() => {
     return JSON.parse(localStorage.getItem('filter')) || ''
   });
 
   const [isShort, toggleShort] = useState(() => {
-     return localStorage.getItem('isShort')==='true'
+    return localStorage.getItem('isShort') === 'true'
   });
 
   const [filteredMovies, filterMoviesList] = useState([]);
 
-  function getMovies() {
-    setLoadingStatus(true)
-    moviesApi.getMovies()
-      .then((res) => {
+  useEffect(() => {
+    getMovies()
+  }, [])
 
-        localStorage.setItem('allMovies', JSON.stringify(res))
+  async function getMovies() {
+    setLoadingStatus(true)
+    await moviesApi.getMovies()
+      .then((res) => {
         setMoviesList(res)
       })
       .catch((err) => {
@@ -52,6 +44,9 @@ export default function Movies({ handleGetSavedMovies }) {
     const result = movies.filter(item => {
       const { country, director, year, description, nameRU, nameEN } = item;
       const filterString = `${country} ${director} ${year} ${description} ${nameRU} ${nameEN}`;
+      if ( seachLine.length ===0 ){
+          return true
+      }
       return filterString.toLowerCase().includes(seachLine.toLowerCase())
     })
       .filter(item => {
@@ -62,26 +57,13 @@ export default function Movies({ handleGetSavedMovies }) {
           return (item.duration <= 40)
         }
       })
-    if (result.length === 0) {
-      setError('Ничего не найдено');
-    }
-    if (filter.length === 0) {
-      return movies
-    }
-    return seachLine.length ? result : []
+    return result;
   }
 
   useEffect(() => {
-    setError("");
-    getMovies();
-    filterMoviesList(filtering(movies, filter, isShort))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter, isShort])
-
-  useEffect(() => {
-    getMovies();
-    filterMoviesList(filtering(movies, filter, isShort))
-  }, [])
+    const filteredMovies = filtering(movies, filter, isShort)
+    filterMoviesList(filteredMovies)
+  }, [filter, isShort, movies])
 
   const handleChangeFilter = (filter) => {
     changeFilter(filter)

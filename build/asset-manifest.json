@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.16f7383f.css",
-    "main.js": "/static/js/main.9984eff7.js",
+    "main.js": "/static/js/main.c7399719.js",
     "static/js/787.296e1247.chunk.js": "/static/js/787.296e1247.chunk.js",
     "static/media/photo_2022-01-28_01-17-08.jpg": "/static/media/photo_2022-01-28_01-17-08.43a300ea2764550679d8.jpg",
     "static/media/Inter-Medium.woff": "/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
@@ -23,11 +23,11 @@
     "static/media/gamburger-menu-icon-open.svg": "/static/media/gamburger-menu-icon-open.80dfd5bd01b8fe0a895e7edee2a73153.svg",
     "static/media/arrow.svg": "/static/media/arrow.2f133fb2a9b9c682afa2.svg",
     "main.16f7383f.css.map": "/static/css/main.16f7383f.css.map",
-    "main.9984eff7.js.map": "/static/js/main.9984eff7.js.map",
+    "main.c7399719.js.map": "/static/js/main.c7399719.js.map",
     "787.296e1247.chunk.js.map": "/static/js/787.296e1247.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.16f7383f.css",
-    "static/js/main.9984eff7.js"
+    "static/js/main.c7399719.js"
   ]
 }
